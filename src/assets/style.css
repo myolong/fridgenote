@@ -204,3 +204,4 @@ details.sec[open] > summary::after { content: "–"; }
   .book .sheet { margin: 0 !important; break-after: page; }
   .book .sheet:last-child { break-after: auto; }
 }
+.sh-top.cont h1 { font-size: 1.5em; }
