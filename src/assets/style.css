@@ -205,3 +205,20 @@ details.sec[open] > summary::after { content: "–"; }
   .book .sheet:last-child { break-after: auto; }
 }
 .sh-top.cont h1 { font-size: 1.5em; }
+
+/* guides */
+.crumbs { margin: 24px 0 0; font-size: 14px; }
+.crumbs a { color: var(--muted); }
+.cta { background: var(--note); border-radius: 6px; padding: 16px 18px; margin: 28px 0; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+.cta p { margin: 0; flex: 1 1 260px; }
+.cta .btn { text-decoration: none; }
+.glist { display: grid; gap: 10px; margin: 8px 0 20px; }
+.glink { display: block; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; text-decoration: none; color: var(--ink); }
+.glink:hover { border-color: var(--note-deep); }
+.glink strong { display: block; font-size: 17px; }
+.glink span { display: block; font-size: 14px; color: var(--muted); margin-top: 2px; }
+figure.ex { margin: 20px 0; }
+figure.ex img { display: block; width: 100%; max-width: 560px; border: 1px solid var(--line); border-radius: 6px; box-shadow: var(--shadow); background: #fff; }
+figure.ex figcaption { font-size: 14px; color: var(--muted); margin-top: 6px; }
+.content blockquote { margin: 14px 0; padding: 10px 14px; border-left: 4px solid var(--note-deep); background: var(--paper); border-radius: 0 8px 8px 0; }
+.content blockquote p { margin: 4px 0; }
