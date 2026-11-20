@@ -132,7 +132,7 @@
       el("div", {}, [el("h1", { text: title }), sub ? el("div", { class: "sub", text: sub }) : null]),
       has(head.dates) ? el("div", { class: "dates" }, [el("b", { text: "Away: " }), head.dates]) : null
     ]));
-    var grid = el("div", { class: "sh-grid" });
+    var nodes = [];
     CFG.sections.forEach(function (sec) {
       if (sec.inSheet === false) return;
       var v = state[sec.key], node = null;
@@ -167,14 +167,50 @@
       }
       if (node) {
         if (sec.wide) node.classList.add("wide");
-        grid.appendChild(node);
+        nodes.push(node);
       }
     });
-    pad.appendChild(grid);
-    pad.appendChild(el("footer", { class: "sh-foot" }, [el("span", { text: CFG.footerNote || "" }), el("span", { text: "Made with FridgeNote" })]));
+    paginate(pad, title, nodes);
+  }
+
+  // Fixed text size. Blocks go onto the page in order; one that doesn't fit starts a new page.
+  function paginate(firstPad, title, nodes) {
+    sheet.className = "book";
     sheet.innerHTML = "";
-    sheet.appendChild(pad);
-    fit();
+    sheet.style.fontSize = "12px";
+    var pages = [];
+    function addPage(pad) {
+      var page = el("div", { class: "sheet " + state.paper + (CFG.sheetClass ? " " + CFG.sheetClass : "") });
+      if (!pad) {
+        pad = el("div", { class: "sheet-pad" });
+        pad.appendChild(el("header", { class: "sh-top cont" }, [el("div", {}, [el("h1", { text: title }), el("div", { class: "sub", text: "(continued)" })])]));
+      }
+      var grid = el("div", { class: "sh-grid" });
+      pad.appendChild(grid);
+      var foot = el("span");
+      pad.appendChild(el("footer", { class: "sh-foot" }, [el("span", { text: CFG.footerNote || "" }), foot]));
+      page.appendChild(pad);
+      sheet.appendChild(page);
+      var pg = { page: page, pad: pad, grid: grid, foot: foot };
+      pages.push(pg);
+      return pg;
+    }
+    function over(pg) { return pg.pad.scrollHeight > pg.page.clientHeight + 1; }
+    var cur = addPage(firstPad), tooBig = false;
+    nodes.forEach(function (node) {
+      cur.grid.appendChild(node);
+      if (over(cur) && cur.grid.children.length > 1) {
+        cur.grid.removeChild(node);
+        cur = addPage();
+        cur.grid.appendChild(node);
+      }
+      if (over(cur)) tooBig = true;
+    });
+    pages.forEach(function (pg, i) { pg.foot.textContent = pages.length > 1 ? "Page " + (i + 1) + " of " + pages.length + " · Made with FridgeNote" : "Made with FridgeNote"; });
+    fitNote.textContent = tooBig ? "One box is longer than a whole page. Shorten it so nothing gets cut off." :
+      (pages.length === 1 ? "Fits on one page." : pages.length + " pages. Print both, or shorten a few notes to fit one page.");
+    fitNote.style.color = tooBig ? "#b42318" : "";
+    scale();
   }
 
 
@@ -280,17 +316,6 @@
     scale();
   }
 
-  // shrink text until the sheet fits on one page
-  function fit() {
-    var pad = sheet.firstChild, size = 13.5, min = 7.5;
-    sheet.style.fontSize = size + "px";
-    while (pad.scrollHeight > sheet.clientHeight + 1 && size > min) { size -= 0.25; sheet.style.fontSize = size + "px"; }
-    var over = pad.scrollHeight > sheet.clientHeight + 1;
-    fitNote.textContent = over ? "Too much to fit on one page. Shorten a few notes so nothing gets cut off." :
-      (size < 10 ? "Text was made smaller to fit one page." : "Fits on one page.");
-    fitNote.style.color = over ? "#b42318" : "";
-    scale();
-  }
   function innerWidth(box) {
     var cs = getComputedStyle(box);
     return box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
