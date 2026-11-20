@@ -17,11 +17,11 @@ from datetime import date
 from pathlib import Path
 
 # ── Site settings ─────────────────────────────────────────────────────
-SITE_URL = "https://fridgenote.com"          # change if the domain differs
-CUSTOM_DOMAIN = "fridgenote.com"              # "" = no CNAME file
+SITE_URL = "https://myolong.github.io/fridgenote"   # temporary; "https://fridgenote.com" after the domain is bought
+CUSTOM_DOMAIN = ""                                   # "fridgenote.com" after DNS is set up ("" = no CNAME file)
 SITE_NAME = "FridgeNote"
 TAGLINE = "Printable notes for whoever's minding your home"
-CONTACT_EMAIL = "hello@example.com"           # TODO: English contact email
+CONTACT_EMAIL = "salimdict.help@gmail.com"    # shared contact inbox (user decision 2026-11-20)
 ADSENSE_CLIENT = ""                           # "ca-pub-..." when ready
 GOOGLE_VERIFICATION = ""
 PRIVACY_FROM = "2026-11-20"
@@ -31,15 +31,16 @@ ROOT = Path(__file__).parent
 SRC = ROOT / "src"
 OUT = ROOT / "docs"
 TODAY = date.today().isoformat()
+BASE = re.sub(r"^https?://[^/]+", "", SITE_URL).rstrip("/")  # "/fridgenote" on github.io, "" on a custom domain
 
 # Order and status of tools on the home page / nav.
 TOOLS = [
     ("pet-sitter-instructions", "sheet"),
+    ("babysitter-information-sheet", "sheet"),
+    ("vacation-rental-welcome-book", "sheet"),
     ("wifi-qr-code-card", "wifi"),
 ]
 SOON = [
-    ("Babysitter info sheet", "Kids' routines, allergies, bedtime, and emergency contacts."),
-    ("Vacation rental welcome book", "Check-in, house guide, rules, and checkout steps for guests."),
     ("House sitter checklist", "Plants, mail, trash day, and thermostat for a neighbor."),
 ]
 PAGES = ["about", "privacy", "terms", "contact"]
@@ -69,7 +70,7 @@ def layout(path, title, desc, body, extra_head="", scripts="", jsonld=None, curr
     def nav_link(href, label):
         cur = ' aria-current="page"' if href == current else ""
         return f'<a href="{href}"{cur}>{label}</a>'
-    nav = "".join(nav_link(h, l) for h, l in [("/pet-sitter-instructions/", "Pet sitter"), ("/wifi-qr-code-card/", "Wi-Fi card"), ("/about/", "About")])
+    nav = "".join(nav_link(h, l) for h, l in [("/pet-sitter-instructions/", "Pet sitter"), ("/babysitter-information-sheet/", "Babysitter"), ("/vacation-rental-welcome-book/", "Welcome book"), ("/wifi-qr-code-card/", "Wi-Fi card")])
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -108,6 +109,8 @@ def layout(path, title, desc, body, extra_head="", scripts="", jsonld=None, curr
 def write(path, text):
     p = OUT / path.strip("/") / "index.html" if path.endswith("/") else OUT / path.lstrip("/")
     p.parent.mkdir(parents=True, exist_ok=True)
+    if BASE:  # site lives in a sub-folder: prefix root-relative links
+        text = re.sub(r'(href|src)="/(?!/)', lambda m: f'{m.group(1)}="{BASE}/', text)
     p.write_text(text, encoding="utf-8")
 
 
@@ -145,7 +148,8 @@ def sheet_tool(slug, meta, cfg):
 <div class="stage"><div class="stage-inner"><div class="scaler" id="scaler"><div class="sheet letter" id="sheet"></div></div></div><p class="fit-note no-print" id="fit-note"></p></div>
 </div>
 <script type="application/json" id="sheet-config">{json.dumps(cfg, ensure_ascii=False)}</script>"""
-    return tool, f'<script src="{asset("sheet.js")}"></script>'
+    qr = f'<script src="{asset("qrcode.js")}"></script>' if cfg.get("book") else ""
+    return tool, qr + f'<script src="{asset("sheet.js")}"></script>'
 
 
 def wifi_tool():

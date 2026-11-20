@@ -1,0 +1,94 @@
+{
+  "id": "welcome-book",
+  "sheetTitle": "Welcome",
+  "headKey": "cover",
+  "openSections": 2,
+  "book": {"wifiKey": "wifi"},
+  "sections": [
+    {
+      "key": "cover", "type": "fields", "title": "Cover & welcome",
+      "fields": [
+        {"k": "title", "label": "Title", "ph": "Welcome to Maple Cottage"},
+        {"k": "place", "label": "Place name or address (small line on top)", "ph": "Maple Cottage · 24 Maple St"},
+        {"k": "welcome", "label": "Welcome message", "ph": "We're so glad you're here. Make yourself at home!", "long": true},
+        {"k": "host", "label": "Signed by", "ph": "Sam & Alex, your hosts"}
+      ]
+    },
+    {
+      "key": "wifi", "type": "fields", "title": "Wi-Fi (prints a QR code)", "hint": "The QR code is made in your browser. Guests scan it to join without typing.",
+      "fields": [
+        {"k": "ssid", "label": "Network name", "ph": "MapleCottage-Guest"},
+        {"k": "pass", "label": "Password (leave blank if none)", "ph": "sunny-garden-42"}
+      ]
+    },
+    {
+      "key": "arrival", "type": "fields", "title": "Arrival", "sheetTitle": "Getting settled",
+      "hint": "Send door codes to guests privately before arrival. A printed book can be read by anyone in the house.",
+      "fields": [
+        {"k": "checkin", "label": "Check-in time", "short": "Check-in", "ph": "4 PM"},
+        {"k": "entry", "label": "Getting in", "short": "Getting in", "ph": "Code sent by message before arrival"},
+        {"k": "parking", "label": "Parking", "ph": "Driveway, one car. Street parking is free after 6 PM."},
+        {"k": "trash", "label": "Trash & recycling", "short": "Trash", "ph": "Bins by the garage. Pickup Tuesday morning."}
+      ]
+    },
+    {
+      "key": "guide", "type": "repeat", "title": "House guide", "sheetTitle": "How things work", "item": "Item", "max": 10,
+      "nameKey": "name", "hint": "Add the things guests usually ask about: heat, TV, coffee maker, washer, hot tub.",
+      "fields": [
+        {"k": "name", "label": "What", "ph": "Thermostat"},
+        {"k": "how", "label": "How it works", "ph": "In the hallway. Keep it between 66 and 74°F.", "long": true}
+      ]
+    },
+    {
+      "key": "rules", "type": "rows", "title": "House rules", "sheetTitle": "House rules", "col0": "Rule", "col1": "Details",
+      "ph0": "Quiet hours", "ph1": "10 PM to 8 AM",
+      "start": [["Quiet hours", ""], ["Smoking", ""], ["Pets", ""], ["Guests", ""]]
+    },
+    {
+      "key": "local", "type": "repeat", "title": "Local favorites", "sheetTitle": "Our local favorites", "item": "Place", "max": 10,
+      "nameKey": "name", "lineKeys": ["type"], "hint": "Your own picks. Short notes work best.",
+      "fields": [
+        {"k": "name", "label": "Name", "ph": "Harbor Bakery"},
+        {"k": "type", "label": "Type & distance", "ph": "Breakfast · 5 min walk"},
+        {"k": "note", "label": "Why you like it", "ph": "Get the cherry scone. Opens at 7."}
+      ]
+    },
+    {
+      "key": "checkout", "type": "checklist", "title": "Check-out", "sheetTitle": "Before you leave", "col0": "When", "col1": "What to do",
+      "ph0": "By 10 AM", "ph1": "Start the dishwasher",
+      "start": [["", ""], ["", ""], ["", ""], ["", ""]]
+    },
+    {
+      "key": "emergency", "type": "fields", "title": "Emergencies & contact", "sheetTitle": "If you need anything", "cls": "alert",
+      "hint": "In the US and Canada, call 911 in an emergency. Writing the address here helps guests tell the dispatcher where to come.",
+      "fields": [
+        {"k": "address", "label": "This property's address", "short": "Address", "ph": "24 Maple St, Harbor Springs"},
+        {"k": "host", "label": "Host contact", "short": "Host", "ph": "Sam · (555) 123-4567 (text is best)"},
+        {"k": "backup", "label": "Local backup contact", "short": "Local contact", "ph": "Pat (property manager) · (555) 222-3333"},
+        {"k": "hospital", "label": "Nearest hospital / urgent care", "short": "Hospital", "ph": "Name, address"},
+        {"k": "where", "label": "First aid kit, fire extinguisher, water shutoff", "short": "Safety items", "ph": "Kit under kitchen sink, extinguisher by the back door", "long": true}
+      ]
+    }
+  ],
+  "example": {
+    "cover": {"title": "Welcome to Maple Cottage", "place": "Maple Cottage · Harbor Springs", "welcome": "We're so glad you're here. This book has everything you need for your stay: how things work, our favorite spots in town, and who to call if anything comes up.\n\nMake yourself at home!", "host": "Sam & Alex, your hosts"},
+    "wifi": {"ssid": "MapleCottage-Guest", "pass": "sunny-garden-42"},
+    "arrival": {"checkin": "4 PM", "entry": "Door code sent by message the morning you arrive", "parking": "Driveway, one car. Street parking is free after 6 PM.", "trash": "Bins beside the garage. Recycling is the blue bin. Pickup is Tuesday morning."},
+    "guide": [
+      {"name": "Heat & air", "how": "Thermostat is in the hallway. Please keep it between 66 and 76°F, and turn it down when you head out for the day."},
+      {"name": "TV", "how": "Use the black remote. Press Home to sign in to your own streaming accounts. Please sign out before you leave."},
+      {"name": "Coffee", "how": "Drip coffee maker on the counter. Filters and ground coffee are in the cabinet above it."},
+      {"name": "Washer & dryer", "how": "In the closet off the kitchen. Detergent is on the shelf. Clean the dryer lint screen after each load."},
+      {"name": "Fireplace", "how": "Gas fireplace. Flip the switch on the wall to the right. It turns off on its own after 2 hours."}
+    ],
+    "rules": [["Quiet hours", "10 PM to 8 AM. Our neighbors are close."], ["Smoking", "Not allowed inside or on the porch."], ["Pets", "Sorry, no pets."], ["Guests", "Up to 4 overnight guests."], ["Shoes", "Please leave them by the door."]],
+    "local": [
+      {"name": "Harbor Bakery", "type": "Breakfast · 5 min walk", "note": "Get the cherry scone. Opens at 7."},
+      {"name": "Lakeside Grocery", "type": "Groceries · 3 min drive", "note": "Open until 10 PM."},
+      {"name": "Point Beach", "type": "Beach · 10 min walk", "note": "Best at sunset. Beach towels are in the hall closet."},
+      {"name": "The Net Shed", "type": "Dinner · 8 min drive", "note": "Fish tacos. Busy on weekends, so go early."}
+    ],
+    "checkout": [["By 10 AM", "Check-out time"], ["", "Start the dishwasher"], ["", "Put used towels in the bathtub"], ["", "Take trash to the bins by the garage"], ["", "Lock the door. The code resets after you leave."]],
+    "emergency": {"address": "24 Maple St, Harbor Springs", "host": "Sam · (555) 123-4567 (text is best)", "backup": "Pat (lives nearby) · (555) 222-3333", "hospital": "Harbor Community Hospital, 300 Bay Rd", "where": "First aid kit under the kitchen sink. Fire extinguisher by the back door. Water shutoff in the basement, left of the stairs."}
+  }
+}

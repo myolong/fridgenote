@@ -1,0 +1,14 @@
+{
+  "title": "Babysitter Information Sheet (Free, Printable) | FridgeNote",
+  "description": "Fill in your kids' allergies, bedtime routine, house rules, and emergency contacts, then print a one-page babysitter information sheet. Free, no sign-up.",
+  "h1": "Babysitter information sheet",
+  "lead": "Everything your sitter needs for the evening on one page: the kids, the plan, the rules, and who to call.",
+  "card": "Allergies, bedtime, rules, and emergency numbers on one page.",
+  "faq": [
+    ["What's the most important thing to put on a babysitter sheet?", "Your phone numbers, your home address, allergies, and any medicine. Those are the things a sitter needs fastest if something goes wrong. Fill in the emergency box first."],
+    ["Why write my own address on it?", "When people are stressed, they forget addresses, especially sitters who don't live nearby. A 911 dispatcher will ask for it first."],
+    ["Where does my information go?", "Nowhere. The sheet is made in your browser and nothing you type is uploaded. If \"Save a draft on this device\" is on, your answers stay in this browser so you can reuse them."],
+    ["Can I use this for grandparents or a nanny?", "Yes. Change the title to anything you like, such as \"Notes for Grandma,\" and fill in what applies."],
+    ["Does this give medical advice?", "No. The boxes are for your own instructions, written the way your child's doctor told you. In an emergency, the sitter should call 911."]
+  ]
+}
