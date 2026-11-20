@@ -17,11 +17,11 @@ from datetime import date
 from pathlib import Path
 
 # ── Site settings ─────────────────────────────────────────────────────
-SITE_URL = "https://fridgenote.com"          # change if the domain differs
-CUSTOM_DOMAIN = "fridgenote.com"              # "" = no CNAME file
+SITE_URL = "https://myolong.github.io/fridgenote"   # temporary; "https://fridgenote.com" after the domain is bought
+CUSTOM_DOMAIN = ""                                   # "fridgenote.com" after DNS is set up ("" = no CNAME file)
 SITE_NAME = "FridgeNote"
 TAGLINE = "Printable notes for whoever's minding your home"
-CONTACT_EMAIL = "hello@example.com"           # TODO: English contact email
+CONTACT_EMAIL = "salimdict.help@gmail.com"    # shared contact inbox (user decision 2026-11-20)
 ADSENSE_CLIENT = ""                           # "ca-pub-..." when ready
 GOOGLE_VERIFICATION = ""
 PRIVACY_FROM = "2026-11-20"
@@ -31,6 +31,7 @@ ROOT = Path(__file__).parent
 SRC = ROOT / "src"
 OUT = ROOT / "docs"
 TODAY = date.today().isoformat()
+BASE = re.sub(r"^https?://[^/]+", "", SITE_URL).rstrip("/")  # "/fridgenote" on github.io, "" on a custom domain
 
 # Order and status of tools on the home page / nav.
 TOOLS = [
@@ -108,6 +109,8 @@ def layout(path, title, desc, body, extra_head="", scripts="", jsonld=None, curr
 def write(path, text):
     p = OUT / path.strip("/") / "index.html" if path.endswith("/") else OUT / path.lstrip("/")
     p.parent.mkdir(parents=True, exist_ok=True)
+    if BASE:  # site lives in a sub-folder: prefix root-relative links
+        text = re.sub(r'(href|src)="/(?!/)', lambda m: f'{m.group(1)}="{BASE}/', text)
     p.write_text(text, encoding="utf-8")
 
 
