@@ -1,0 +1,14 @@
+{
+  "title": "Wi-Fi QR Code Card Maker (Free, Printable) | FridgeNote",
+  "description": "Make a printable Wi-Fi card with a QR code guests can scan to join your network. Free, no sign-up. Your password never leaves your browser.",
+  "h1": "Wi-Fi QR code card",
+  "lead": "Type your network name and password. Guests point their phone camera at the code and they're online. No more spelling out passwords.",
+  "card": "A card guests scan to join your Wi-Fi. Great for sitters and rentals.",
+  "faq": [
+    ["Do guests need an app to scan it?", "Usually not. The built-in camera app on most iPhones and Android phones from the last several years recognizes Wi-Fi codes. The guest points the camera at the code and taps the prompt that appears."],
+    ["Is my password sent anywhere?", "No. The code is drawn by your browser, on your device. Nothing you type is uploaded to us or anyone else."],
+    ["What if I change my Wi-Fi password?", "The old card stops working. Make a new card with the new password and replace it."],
+    ["Should I hide the password on the card?", "If the card will sit somewhere public, you can uncheck \"Show the password on the card.\" The QR code still works. Keep in mind that anyone who scans it can join your network."],
+    ["My network is hidden. Will this work?", "Yes. Check \"My network is hidden\" so phones know to look for it."]
+  ]
+}

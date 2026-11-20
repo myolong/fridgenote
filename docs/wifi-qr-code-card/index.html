@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wi-Fi QR Code Card Maker (Free, Printable) | FridgeNote</title>
+<meta name="description" content="Make a printable Wi-Fi card with a QR code guests can scan to join your network. Free, no sign-up. Your password never leaves your browser.">
+<link rel="canonical" href="https://fridgenote.com/wifi-qr-code-card/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FridgeNote">
+<meta property="og:title" content="Wi-Fi QR Code Card Maker (Free, Printable) | FridgeNote">
+<meta property="og:description" content="Make a printable Wi-Fi card with a QR code guests can scan to join your network. Free, no sign-up. Your password never leaves your browser.">
+<meta property="og:url" content="https://fridgenote.com/wifi-qr-code-card/">
+<meta name="theme-color" content="#fbf8f1">
+<link rel="icon" href="/assets/favicon.svg?v=f1297172" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css?v=0ff2a479">
+<style id="page-size">@page { size: letter; margin: 0; }</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Wi-fi qr code card", "url": "https://fridgenote.com/wifi-qr-code-card/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Make a printable Wi-Fi card with a QR code guests can scan to join your network. Free, no sign-up. Your password never leaves your browser."}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do guests need an app to scan it?", "acceptedAnswer": {"@type": "Answer", "text": "Usually not. The built-in camera app on most iPhones and Android phones from the last several years recognizes Wi-Fi codes. The guest points the camera at the code and taps the prompt that appears."}}, {"@type": "Question", "name": "Is my password sent anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. The code is drawn by your browser, on your device. Nothing you type is uploaded to us or anyone else."}}, {"@type": "Question", "name": "What if I change my Wi-Fi password?", "acceptedAnswer": {"@type": "Answer", "text": "The old card stops working. Make a new card with the new password and replace it."}}, {"@type": "Question", "name": "Should I hide the password on the card?", "acceptedAnswer": {"@type": "Answer", "text": "If the card will sit somewhere public, you can uncheck \"Show the password on the card.\" The QR code still works. Keep in mind that anyone who scans it can join your network."}}, {"@type": "Question", "name": "My network is hidden. Will this work?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Check \"My network is hidden\" so phones know to look for it."}}]}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+<a class="logo" href="/"><img class="logo-mark" src="/assets/logo.svg?v=f1297172" alt="" width="34" height="34">FridgeNote</a>
+<nav class="nav" aria-label="Main"><a href="/pet-sitter-instructions/">Pet sitter</a><a href="/wifi-qr-code-card/" aria-current="page">Wi-Fi card</a><a href="/about/">About</a></nav>
+</div></header>
+<main><div class="wrap content">
+<h1>Wi-Fi QR code card</h1>
+<p class="lead">Type your network name and password. Guests point their phone camera at the code and they&#x27;re online. No more spelling out passwords.</p>
+</div>
+<div class="wrap"><div class="tool">
+<div class="panel no-print">
+<div class="bar no-print">
+<button type="button" class="btn primary" id="btn-print">Print or save PDF</button>
+<span class="seg" role="radiogroup" aria-label="Paper size"><label><input type="radio" name="paper" value="letter"><span>Letter</span></label><label><input type="radio" name="paper" value="a4"><span>A4</span></label></span>
+</div>
+<form onsubmit="return false">
+<label class="f"><span>Network name (SSID)</span><input id="w-ssid" autocomplete="off" spellcheck="false"></label>
+<label class="f"><span>Security</span><select id="w-sec"><option value="WPA">WPA / WPA2 / WPA3 (most routers)</option><option value="WEP">WEP (old routers)</option><option value="nopass">No password</option></select></label>
+<label class="f" id="w-pass-row"><span>Password</span><input id="w-pass" autocomplete="off" spellcheck="false"></label>
+<label class="check"><input type="checkbox" id="w-hidden"> My network is hidden</label>
+<label class="check"><input type="checkbox" id="w-showpass"> Show the password on the card</label>
+<label class="f"><span>Card title</span><input id="w-title"></label>
+<label class="f"><span>Small note</span><input id="w-note"></label>
+<label class="f"><span>Layout</span><select id="w-layout"><option value="n4">4 small cards</option><option value="n2">2 signs</option><option value="n1">1 large sign</option></select></label>
+</form>
+<label class="check"><input type="checkbox" id="save-draft"> Save on this device</label>
+<p class="privacy-note">The code is made in this browser. Your password is never uploaded.</p>
+</div>
+<div class="stage"><div class="stage-inner"><div class="scaler" id="scaler"><div class="sheet letter" id="sheet"></div></div></div><p class="fit-note no-print" id="fit-note"></p></div>
+</div></div>
+<div class="wrap narrow content"><h2>How to use it</h2>
+<ol>
+  <li><strong>Find your network name and password.</strong> They're often printed on a sticker on your router.</li>
+  <li><strong>Type them in and pick a layout.</strong> One big sign for a wall, two signs, or four small cards to cut out.</li>
+  <li><strong>Test it before you print.</strong> Point your own phone at the code on screen. If it offers to join your network, you're good.</li>
+  <li><strong>Print.</strong> Put one on the fridge, one by the guest bed, and one in the welcome book.</li>
+</ol>
+
+<h2>Where a Wi-Fi card helps</h2>
+<table>
+  <thead><tr><th>Situation</th><th>Suggested layout</th></tr></thead>
+  <tbody>
+    <tr><td>Pet sitter or babysitter</td><td>4 cards. Stick one on the fridge, give one to the sitter.</td></tr>
+    <tr><td>Vacation rental or guest room</td><td>1 large sign in a frame, or 2 signs for two rooms</td></tr>
+    <tr><td>Family gathering or party</td><td>1 large sign near the entrance</td></tr>
+    <tr><td>Small office or waiting room</td><td>1 large sign. Consider a guest network.</td></tr>
+  </tbody>
+</table>
+
+<h2>Tips</h2>
+<ul>
+  <li><strong>Use a guest network if your router has one.</strong> Guests get online without access to your printers, cameras, or shared files. Look for "Guest network" in your router's settings or app.</li>
+  <li><strong>Network names are case-sensitive.</strong> "MapleHouse" and "maplehouse" are different networks. Copy the name exactly.</li>
+  <li><strong>Security type:</strong> almost every home router today uses WPA/WPA2/WPA3. Pick that unless you know otherwise.</li>
+</ul>
+<h2>Questions</h2><dl class="faq"><dt>Do guests need an app to scan it?</dt><dd>Usually not. The built-in camera app on most iPhones and Android phones from the last several years recognizes Wi-Fi codes. The guest points the camera at the code and taps the prompt that appears.</dd><dt>Is my password sent anywhere?</dt><dd>No. The code is drawn by your browser, on your device. Nothing you type is uploaded to us or anyone else.</dd><dt>What if I change my Wi-Fi password?</dt><dd>The old card stops working. Make a new card with the new password and replace it.</dd><dt>Should I hide the password on the card?</dt><dd>If the card will sit somewhere public, you can uncheck &quot;Show the password on the card.&quot; The QR code still works. Keep in mind that anyone who scans it can join your network.</dd><dt>My network is hidden. Will this work?</dt><dd>Yes. Check &quot;My network is hidden&quot; so phones know to look for it.</dd></dl>
+<p class="meta">Updated 2026-11-20</p></div></main>
+<footer class="site-foot"><div class="wrap">
+<nav aria-label="Footer"><a href="/about/">About</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/contact/">Contact</a></nav>
+<p>© 2026 FridgeNote. Free printable sheets. Nothing you type leaves your browser.</p>
+</div></footer>
+<script src="/assets/qrcode.js?v=6e6189e2"></script><script src="/assets/wifi.js?v=9ca0a444"></script>
+</body>
+</html>

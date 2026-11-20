@@ -1,0 +1,247 @@
+#!/usr/bin/env python3
+"""FridgeNote: build src/ into docs/ (GitHub Pages, main branch /docs).
+
+Usage: python3 build.py
+
+Tool = src/tools/<slug>/  page.json (title, description, h1, lead, card, faq)
+                          config.json (sheet form definition, for sheet tools)
+                          body.html   (guide text under the tool)
+Page = src/pages/<slug>.html  first line: <!--{json meta}-->
+"""
+import hashlib
+import html
+import json
+import re
+import shutil
+from datetime import date
+from pathlib import Path
+
+# ── Site settings ─────────────────────────────────────────────────────
+SITE_URL = "https://fridgenote.com"          # change if the domain differs
+CUSTOM_DOMAIN = "fridgenote.com"              # "" = no CNAME file
+SITE_NAME = "FridgeNote"
+TAGLINE = "Printable notes for whoever's minding your home"
+CONTACT_EMAIL = "hello@example.com"           # TODO: English contact email
+ADSENSE_CLIENT = ""                           # "ca-pub-..." when ready
+GOOGLE_VERIFICATION = ""
+PRIVACY_FROM = "2026-11-20"
+# ──────────────────────────────────────────────────────────────────────
+
+ROOT = Path(__file__).parent
+SRC = ROOT / "src"
+OUT = ROOT / "docs"
+TODAY = date.today().isoformat()
+
+# Order and status of tools on the home page / nav.
+TOOLS = [
+    ("pet-sitter-instructions", "sheet"),
+    ("wifi-qr-code-card", "wifi"),
+]
+SOON = [
+    ("Babysitter info sheet", "Kids' routines, allergies, bedtime, and emergency contacts."),
+    ("Vacation rental welcome book", "Check-in, house guide, rules, and checkout steps for guests."),
+    ("House sitter checklist", "Plants, mail, trash day, and thermostat for a neighbor."),
+]
+PAGES = ["about", "privacy", "terms", "contact"]
+
+
+def esc(t):
+    return html.escape(str(t), quote=True)
+
+
+def asset(path):
+    h = hashlib.md5((SRC / "assets" / path).read_bytes()).hexdigest()[:8]
+    return f"/assets/{path}?v={h}"
+
+
+def fill(text):
+    return text.replace("{{EMAIL}}", esc(CONTACT_EMAIL)).replace("{{PRIVACY_FROM}}", PRIVACY_FROM)
+
+
+def layout(path, title, desc, body, extra_head="", scripts="", jsonld=None, current=""):
+    canonical = SITE_URL + path
+    head_ads = ""
+    if ADSENSE_CLIENT:
+        head_ads = f'<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={ADSENSE_CLIENT}" crossorigin="anonymous"></script>'
+    gv = f'<meta name="google-site-verification" content="{esc(GOOGLE_VERIFICATION)}">' if GOOGLE_VERIFICATION else ""
+    ld = "".join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in (jsonld or []))
+
+    def nav_link(href, label):
+        cur = ' aria-current="page"' if href == current else ""
+        return f'<a href="{href}"{cur}>{label}</a>'
+    nav = "".join(nav_link(h, l) for h, l in [("/pet-sitter-instructions/", "Pet sitter"), ("/wifi-qr-code-card/", "Wi-Fi card"), ("/about/", "About")])
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(title)}</title>
+<meta name="description" content="{esc(desc)}">
+<link rel="canonical" href="{canonical}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{SITE_NAME}">
+<meta property="og:title" content="{esc(title)}">
+<meta property="og:description" content="{esc(desc)}">
+<meta property="og:url" content="{canonical}">
+<meta name="theme-color" content="#fbf8f1">
+<link rel="icon" href="{asset('favicon.svg')}" type="image/svg+xml">
+<link rel="stylesheet" href="{asset('style.css')}">
+<style id="page-size">@page {{ size: letter; margin: 0; }}</style>
+{gv}{head_ads}{extra_head}{ld}
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+<a class="logo" href="/"><img class="logo-mark" src="{asset('logo.svg')}" alt="" width="34" height="34">{SITE_NAME}</a>
+<nav class="nav" aria-label="Main">{nav}</nav>
+</div></header>
+<main>{body}</main>
+<footer class="site-foot"><div class="wrap">
+<nav aria-label="Footer"><a href="/about/">About</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/contact/">Contact</a></nav>
+<p>© {date.today().year} {SITE_NAME}. Free printable sheets. Nothing you type leaves your browser.</p>
+</div></footer>
+{scripts}
+</body>
+</html>
+"""
+
+
+def write(path, text):
+    p = OUT / path.strip("/") / "index.html" if path.endswith("/") else OUT / path.lstrip("/")
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(text, encoding="utf-8")
+
+
+def faq_html(faq):
+    items = "".join(f"<dt>{esc(q)}</dt><dd>{esc(a)}</dd>" for q, a in faq)
+    return f'<h2>Questions</h2><dl class="faq">{items}</dl>'
+
+
+def faq_ld(faq):
+    return {"@context": "https://schema.org", "@type": "FAQPage",
+            "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
+
+
+def app_ld(meta, path):
+    return {"@context": "https://schema.org", "@type": "WebApplication", "name": meta["h1"].capitalize(),
+            "url": SITE_URL + path, "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any",
+            "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": meta["description"]}
+
+
+CONTROLS = """<div class="bar no-print">
+<button type="button" class="btn primary" id="btn-print">Print or save PDF</button>
+<span class="seg" role="radiogroup" aria-label="Paper size"><label><input type="radio" name="paper" value="letter"><span>Letter</span></label><label><input type="radio" name="paper" value="a4"><span>A4</span></label></span>
+</div>"""
+
+
+def sheet_tool(slug, meta, cfg):
+    tool = f"""<div class="tool">
+<div class="panel no-print">
+{CONTROLS}
+<div class="bar"><button type="button" class="btn small" id="btn-example">Load example</button><button type="button" class="btn small" id="btn-clear">Clear all</button></div>
+<form id="sheet-form" onsubmit="return false"></form>
+<label class="check"><input type="checkbox" id="save-draft"> Save a draft on this device</label>
+<p class="privacy-note">What you type stays in this browser. Nothing is uploaded.</p>
+</div>
+<div class="stage"><div class="stage-inner"><div class="scaler" id="scaler"><div class="sheet letter" id="sheet"></div></div></div><p class="fit-note no-print" id="fit-note"></p></div>
+</div>
+<script type="application/json" id="sheet-config">{json.dumps(cfg, ensure_ascii=False)}</script>"""
+    return tool, f'<script src="{asset("sheet.js")}"></script>'
+
+
+def wifi_tool():
+    tool = f"""<div class="tool">
+<div class="panel no-print">
+{CONTROLS}
+<form onsubmit="return false">
+<label class="f"><span>Network name (SSID)</span><input id="w-ssid" autocomplete="off" spellcheck="false"></label>
+<label class="f"><span>Security</span><select id="w-sec"><option value="WPA">WPA / WPA2 / WPA3 (most routers)</option><option value="WEP">WEP (old routers)</option><option value="nopass">No password</option></select></label>
+<label class="f" id="w-pass-row"><span>Password</span><input id="w-pass" autocomplete="off" spellcheck="false"></label>
+<label class="check"><input type="checkbox" id="w-hidden"> My network is hidden</label>
+<label class="check"><input type="checkbox" id="w-showpass"> Show the password on the card</label>
+<label class="f"><span>Card title</span><input id="w-title"></label>
+<label class="f"><span>Small note</span><input id="w-note"></label>
+<label class="f"><span>Layout</span><select id="w-layout"><option value="n4">4 small cards</option><option value="n2">2 signs</option><option value="n1">1 large sign</option></select></label>
+</form>
+<label class="check"><input type="checkbox" id="save-draft"> Save on this device</label>
+<p class="privacy-note">The code is made in this browser. Your password is never uploaded.</p>
+</div>
+<div class="stage"><div class="stage-inner"><div class="scaler" id="scaler"><div class="sheet letter" id="sheet"></div></div></div><p class="fit-note no-print" id="fit-note"></p></div>
+</div>"""
+    return tool, f'<script src="{asset("qrcode.js")}"></script><script src="{asset("wifi.js")}"></script>'
+
+
+def build():
+    if OUT.exists():
+        shutil.rmtree(OUT)
+    OUT.mkdir()
+    shutil.copytree(SRC / "assets", OUT / "assets")
+    shutil.copy(SRC / "assets" / "favicon.svg", OUT / "favicon.svg")
+    urls = ["/"]
+    cards = []
+    for slug, kind in TOOLS:
+        d = SRC / "tools" / slug
+        meta = json.loads((d / "page.json").read_text(encoding="utf-8"))
+        body_txt = (d / "body.html").read_text(encoding="utf-8")
+        if kind == "sheet":
+            tool, scripts = sheet_tool(slug, meta, json.loads((d / "config.json").read_text(encoding="utf-8")))
+        else:
+            tool, scripts = wifi_tool()
+        path = f"/{slug}/"
+        body = f"""<div class="wrap content">
+<h1>{esc(meta['h1'])}</h1>
+<p class="lead">{esc(meta['lead'])}</p>
+</div>
+<div class="wrap">{tool}</div>
+<div class="wrap narrow content">{fill(body_txt)}{faq_html(meta['faq'])}
+<p class="meta">Updated {TODAY}</p></div>"""
+        write(path, layout(path, meta["title"], meta["description"], body, scripts=scripts,
+                           jsonld=[app_ld(meta, path), faq_ld(meta["faq"])], current=path))
+        urls.append(path)
+        cards.append(f'<a class="card" href="{path}"><h3>{esc(meta["h1"].capitalize())}</h3><p>{esc(meta["card"])}</p></a>')
+    for name, desc in SOON:
+        cards.append(f'<div class="card is-soon" aria-disabled="true"><h3>{esc(name)}</h3><p>{esc(desc)}</p><span class="soon">Coming soon</span></div>')
+
+    home = f"""<div class="wrap">
+<section class="hero">
+<h1>The note you leave on the fridge, done in a minute.</h1>
+<p>Free printable instruction sheets for pet sitters, babysitters, house sitters, and guests. Fill in the boxes, check the preview, print.</p>
+<ul class="badges"><li>Free, no sign-up</li><li>Nothing uploaded</li><li>Letter or A4</li><li>Fits on one page</li></ul>
+</section>
+<div class="cards">{''.join(cards)}</div>
+</div>
+<div class="wrap narrow content">
+<h2>Why a printed sheet still beats a text message</h2>
+<p>Texts get buried. A sheet on the fridge is the first thing a sitter sees, it works when their phone is charging, and it's easy to point to when you're on the phone together. Send a PDF copy too, and they have it both ways.</p>
+<h2>How it works</h2>
+<ol><li>Pick a sheet and fill in what applies. Blank boxes stay off the page.</li><li>Watch the preview update as you type. It shrinks the text to keep everything on one page.</li><li>Print it, or save it as a PDF to send.</li></ol>
+<h2>Your information stays with you</h2>
+<p>Every sheet is made inside your browser. Phone numbers, addresses, and Wi-Fi passwords are never uploaded. If you want to reuse a sheet, you can save a draft on your own device. <a href="/privacy/">Read more</a>.</p>
+</div>"""
+    write("/", layout("/", f"{SITE_NAME}: Free Printable Pet Sitter, Babysitter & Guest Instruction Sheets",
+                      "Make a one-page instruction sheet for your pet sitter, babysitter, house sitter, or guests. Free, printable, no sign-up, and nothing you type is uploaded.",
+                      home, jsonld=[{"@context": "https://schema.org", "@type": "WebSite", "name": SITE_NAME, "url": SITE_URL + "/"}], current="/"))
+
+    for slug in PAGES:
+        raw = (SRC / "pages" / f"{slug}.html").read_text(encoding="utf-8")
+        m = re.match(r"<!--(\{.*?\})-->\s*", raw, re.S)
+        meta = json.loads(m.group(1))
+        body = f'<div class="wrap narrow content"><h1>{esc(meta["h1"])}</h1>{fill(raw[m.end():])}</div>'
+        path = f"/{slug}/"
+        write(path, layout(path, meta["title"], meta["description"], body, current=path))
+        urls.append(path)
+
+    write("/404.html", layout("/404.html", f"Page not found | {SITE_NAME}", "Page not found.",
+                              '<div class="wrap narrow content"><h1>Page not found</h1><p>That page doesn\'t exist. <a href="/">Go to the home page</a>.</p></div>'))
+    sm = "".join(f"<url><loc>{SITE_URL}{u}</loc><lastmod>{TODAY}</lastmod></url>" for u in urls)
+    (OUT / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{sm}</urlset>', encoding="utf-8")
+    (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n", encoding="utf-8")
+    if ADSENSE_CLIENT:
+        (OUT / "ads.txt").write_text(f"google.com, {ADSENSE_CLIENT.replace('ca-', '')}, DIRECT, f08c47fec0942fa0\n", encoding="utf-8")
+    if CUSTOM_DOMAIN:
+        (OUT / "CNAME").write_text(CUSTOM_DOMAIN + "\n", encoding="utf-8")
+    (OUT / ".nojekyll").write_text("", encoding="utf-8")
+    print(f"built {len(urls)} pages -> {OUT}")
+
+
+if __name__ == "__main__":
+    build()
