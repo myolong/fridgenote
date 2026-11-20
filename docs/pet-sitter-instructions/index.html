@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pet Sitter Instructions Template (Free, Printable) | FridgeNote</title>
+<meta name="description" content="Fill in your pet&#x27;s food, meds, routine and vet info, then print a one-page pet sitter sheet for the fridge. Free, no sign-up, nothing uploaded.">
+<link rel="canonical" href="https://fridgenote.com/pet-sitter-instructions/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FridgeNote">
+<meta property="og:title" content="Pet Sitter Instructions Template (Free, Printable) | FridgeNote">
+<meta property="og:description" content="Fill in your pet&#x27;s food, meds, routine and vet info, then print a one-page pet sitter sheet for the fridge. Free, no sign-up, nothing uploaded.">
+<meta property="og:url" content="https://fridgenote.com/pet-sitter-instructions/">
+<meta name="theme-color" content="#fbf8f1">
+<link rel="icon" href="/assets/favicon.svg?v=f1297172" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css?v=0ff2a479">
+<style id="page-size">@page { size: letter; margin: 0; }</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Pet sitter instructions", "url": "https://fridgenote.com/pet-sitter-instructions/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Fill in your pet's food, meds, routine and vet info, then print a one-page pet sitter sheet for the fridge. Free, no sign-up, nothing uploaded."}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. There's no account, no watermark, and no paid version. Print as many copies as you like."}}, {"@type": "Question", "name": "Where does my information go?", "acceptedAnswer": {"@type": "Answer", "text": "Nowhere. The sheet is built inside your browser. If you leave \"Save a draft on this device\" on, your answers are stored only in this browser so you can reuse them next trip. Turn it off, or press Clear, to remove them."}}, {"@type": "Question", "name": "Can I save it as a PDF instead of printing?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Press Print, then choose \"Save as PDF\" as the printer. You can text or email the PDF to your sitter."}}, {"@type": "Question", "name": "What if it doesn't fit on one page?", "acceptedAnswer": {"@type": "Answer", "text": "The text shrinks automatically. If it still doesn't fit, you'll see a red note under the preview. Shorten the longest boxes, or move extra details to the Notes box."}}, {"@type": "Question", "name": "Should I write my door code on it?", "acceptedAnswer": {"@type": "Answer", "text": "We'd rather you didn't. A sheet on the fridge can be seen by anyone who walks in, and sometimes from a window. Give codes to your sitter in person or by text."}}]}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+<a class="logo" href="/"><img class="logo-mark" src="/assets/logo.svg?v=f1297172" alt="" width="34" height="34">FridgeNote</a>
+<nav class="nav" aria-label="Main"><a href="/pet-sitter-instructions/" aria-current="page">Pet sitter</a><a href="/wifi-qr-code-card/">Wi-Fi card</a><a href="/about/">About</a></nav>
+</div></header>
+<main><div class="wrap content">
+<h1>Pet sitter instructions</h1>
+<p class="lead">Fill in the boxes, check the preview, and print one page for the fridge. Works for dogs, cats, and most other pets.</p>
+</div>
+<div class="wrap"><div class="tool">
+<div class="panel no-print">
+<div class="bar no-print">
+<button type="button" class="btn primary" id="btn-print">Print or save PDF</button>
+<span class="seg" role="radiogroup" aria-label="Paper size"><label><input type="radio" name="paper" value="letter"><span>Letter</span></label><label><input type="radio" name="paper" value="a4"><span>A4</span></label></span>
+</div>
+<div class="bar"><button type="button" class="btn small" id="btn-example">Load example</button><button type="button" class="btn small" id="btn-clear">Clear all</button></div>
+<form id="sheet-form" onsubmit="return false"></form>
+<label class="check"><input type="checkbox" id="save-draft"> Save a draft on this device</label>
+<p class="privacy-note">What you type stays in this browser. Nothing is uploaded.</p>
+</div>
+<div class="stage"><div class="stage-inner"><div class="scaler" id="scaler"><div class="sheet letter" id="sheet"></div></div></div><p class="fit-note no-print" id="fit-note"></p></div>
+</div>
+<script type="application/json" id="sheet-config">{"id": "pet-sitter", "sheetTitle": "Pet Sitter Instructions", "headKey": "owner", "subFrom": "subtitle", "openSections": 2, "footerNote": "Thank you for looking after them!", "sections": [{"key": "owner", "type": "fields", "title": "You & your trip", "sheetTitle": "How to reach us", "skip": ["title", "subtitle", "dates"], "fields": [{"k": "title", "label": "Sheet title", "ph": "Pet Sitter Instructions"}, {"k": "subtitle", "label": "Line under the title", "ph": "For Max & Luna · 24 Maple St"}, {"k": "dates", "label": "Dates away", "ph": "Fri Jun 12 – Mon Jun 15"}, {"k": "name", "label": "Your name(s)", "short": "Owner", "ph": "Sam & Alex"}, {"k": "phone", "label": "Your phone", "short": "Phone", "ph": "(555) 123-4567"}, {"k": "where", "label": "Where you'll be", "short": "Staying at", "ph": "Hotel name, city"}, {"k": "text", "label": "Best way to reach you", "short": "Best contact", "ph": "Text first, call if urgent"}]}, {"key": "pets", "type": "repeat", "title": "Your pets", "sheetTitle": "Meet the pets", "item": "Pet", "max": 4, "wide": true, "nameKey": "name", "lineKeys": ["kind"], "hint": "Add one box per pet. Leave anything blank that doesn't apply.", "fields": [{"k": "name", "label": "Name", "ph": "Max"}, {"k": "kind", "label": "Kind, breed, age", "ph": "Dog, beagle mix, 6 yrs"}, {"k": "food", "label": "Food & amount", "short": "Food", "ph": "1 cup dry food (bin in pantry)"}, {"k": "feed", "label": "When to feed", "short": "Feeding", "ph": "7 AM and 6 PM"}, {"k": "treats", "label": "Treats", "short": "Treats", "ph": "2 small treats a day, max"}, {"k": "meds", "label": "Medicine (exactly as your vet told you)", "short": "Medicine", "ph": "1 pill with breakfast, wrapped in cheese", "long": true}, {"k": "habits", "label": "Habits & things to know", "short": "Good to know", "ph": "Scared of the vacuum. Pulls on the leash near squirrels.", "long": true}, {"k": "never", "label": "Never let them…", "short": "Never", "ph": "Eat grapes, go off-leash, upstairs"}]}, {"key": "schedule", "type": "checklist", "title": "Daily routine", "sheetTitle": "Daily routine", "col0": "Time", "col1": "What to do", "ph0": "7:00 AM", "ph1": "Breakfast + pill", "wide": true, "start": [["7:00 AM", ""], ["12:00 PM", ""], ["6:00 PM", ""], ["9:30 PM", ""]]}, {"key": "walks", "type": "fields", "title": "Walks, litter & play", "sheetTitle": "Walks, litter & play", "fields": [{"k": "walk", "label": "Walks", "ph": "20 min, morning and evening. Leash is by the front door."}, {"k": "potty", "label": "Bathroom / litter", "short": "Bathroom", "ph": "Scoop litter once a day. Bags under the sink."}, {"k": "play", "label": "Play & exercise", "short": "Play", "ph": "Loves fetch in the backyard"}, {"k": "sleep", "label": "Bedtime", "ph": "Sleeps in crate in the laundry room"}]}, {"key": "vet", "type": "fields", "title": "Vet & emergencies", "sheetTitle": "If something goes wrong", "cls": "alert", "hint": "Ask your vet which emergency clinic they recommend and write it here.", "fields": [{"k": "vet", "label": "Regular vet", "short": "Vet", "ph": "Oak Street Animal Hospital"}, {"k": "vetphone", "label": "Vet phone & address", "short": "Vet phone", "ph": "(555) 222-3333 · 10 Oak St"}, {"k": "er", "label": "24-hour emergency clinic", "short": "24-hr clinic", "ph": "Name, phone, address"}, {"k": "poison", "label": "Pet poison helpline", "short": "Poison line", "ph": "Number your vet recommends"}, {"k": "backup", "label": "Backup contact nearby", "short": "Backup", "ph": "Neighbor Jordan · (555) 444-5555"}, {"k": "carrier", "label": "Carrier / records location", "short": "Carrier", "ph": "Hall closet, top shelf"}]}, {"key": "home", "type": "fields", "title": "Around the house", "sheetTitle": "Around the house", "hint": "Don't write door or alarm codes on a sheet that will be visible from outside. Tell your sitter those in person.", "fields": [{"k": "supplies", "label": "Where supplies are", "short": "Supplies", "ph": "Food in pantry, towels in hall closet"}, {"k": "wifi", "label": "Wi-Fi", "ph": "Network & password"}, {"k": "trash", "label": "Trash day", "short": "Trash", "ph": "Bins out Tuesday night"}, {"k": "rules", "label": "House rules", "short": "Rules", "ph": "Pets not allowed on the couch", "long": true}]}, {"key": "notes", "type": "text", "title": "Anything else", "sheetTitle": "Notes", "wide": true, "ph": "Help yourself to snacks in the fridge!"}], "example": {"owner": {"title": "Pet Sitter Instructions", "subtitle": "For Max & Luna · Thank you for helping!", "dates": "Fri Jun 12 – Mon Jun 15", "name": "Sam & Alex", "phone": "(555) 123-4567", "where": "Lakeview Inn, Traverse City", "text": "Text anytime. Call if it's urgent."}, "pets": [{"name": "Max", "kind": "Dog · beagle mix · 6 yrs", "food": "1 cup dry food (bin in pantry)", "feed": "7 AM and 6 PM", "treats": "2 small treats a day", "meds": "1 allergy pill with breakfast. Hide it in a bit of cheese.", "habits": "Barks at the mail carrier, then settles down. Pulls on the leash near squirrels.", "never": "Grapes, chocolate, off-leash walks"}, {"name": "Luna", "kind": "Cat · 3 yrs", "food": "Half a can wet food + small scoop dry", "feed": "7 AM and 6 PM", "habits": "Shy. She may hide under the bed the first day. That's normal.", "never": "Let her out the front door"}], "schedule": [["7:00 AM", "Feed both. Max's pill. Short walk."], ["12:00 PM", "Let Max out in the backyard. Fresh water."], ["6:00 PM", "Feed both. 20-minute walk."], ["9:30 PM", "Scoop litter. Max into his crate."]], "walks": {"walk": "20 min morning and evening. Leash and bags by the front door.", "potty": "Scoop Luna's litter once a day. Bags under the bathroom sink.", "play": "Max loves fetch. Luna likes the feather toy.", "sleep": "Max sleeps in his crate in the laundry room."}, "vet": {"vet": "Oak Street Animal Hospital", "vetphone": "(555) 222-3333 · 10 Oak St", "er": "Northside 24-Hour Pet ER · (555) 999-0000", "backup": "Neighbor Jordan · (555) 444-5555", "carrier": "Hall closet, top shelf"}, "home": {"supplies": "Food in the pantry. Old towels in the hall closet.", "wifi": "MapleHouse · see card on the fridge", "trash": "Bins out Tuesday night", "rules": "Max isn't allowed on the couch."}, "notes": "Help yourself to anything in the fridge. Thank you so much!"}}</script></div>
+<div class="wrap narrow content"><h2>How to use it</h2>
+<ol>
+  <li><strong>Fill in what applies.</strong> Empty boxes don't show up on the printed sheet, so skip anything that doesn't fit your pet.</li>
+  <li><strong>Check the preview.</strong> It's exactly what will print. The note under it tells you if everything fits on one page.</li>
+  <li><strong>Print or save as PDF.</strong> Stick it on the fridge and send a copy to your sitter's phone.</li>
+</ol>
+
+<h2>What sitters say they actually need</h2>
+<p>Most mix-ups happen around four things. If you only have five minutes, fill these in first.</p>
+<table>
+  <thead><tr><th>Box</th><th>Why it matters</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td>Food &amp; amount</td><td>"Feed her" means different things to different people.</td><td>1 cup dry food, bin in the pantry</td></tr>
+    <tr><td>Medicine</td><td>Missed or doubled doses are the most common problem.</td><td>1 pill with breakfast, hidden in cheese</td></tr>
+    <tr><td>Daily routine</td><td>Pets do better when the day looks like a normal day.</td><td>7 AM breakfast, 6 PM walk</td></tr>
+    <tr><td>Vet &amp; emergency clinic</td><td>Nobody wants to search for a 24-hour clinic at midnight.</td><td>Clinic name, phone, address</td></tr>
+  </tbody>
+</table>
+
+<h2>A few tips from pet owners</h2>
+<ul>
+  <li><strong>Write medicine exactly as your vet told you.</strong> Copy the label. Don't round or guess.</li>
+  <li><strong>Mention the "normal weird" stuff.</strong> A cat hiding under the bed on day one, or a dog who won't eat while you're gone, can scare a new sitter. One line saves a worried phone call.</li>
+  <li><strong>Add a backup contact who lives nearby.</strong> If the sitter can't reach you, they need someone who can get to the house.</li>
+  <li><strong>Put the carrier and leash location on the sheet.</strong> In an emergency, finding the carrier is often the slowest part.</li>
+  <li><strong>Do a short trial visit.</strong> Walk through the sheet with your sitter before you leave. They'll spot what's missing.</li>
+</ul>
+<p class="tip">Going away often? Leave "Save a draft on this device" on. Next time, just change the dates and print.</p>
+<h2>Questions</h2><dl class="faq"><dt>Is this really free?</dt><dd>Yes. There&#x27;s no account, no watermark, and no paid version. Print as many copies as you like.</dd><dt>Where does my information go?</dt><dd>Nowhere. The sheet is built inside your browser. If you leave &quot;Save a draft on this device&quot; on, your answers are stored only in this browser so you can reuse them next trip. Turn it off, or press Clear, to remove them.</dd><dt>Can I save it as a PDF instead of printing?</dt><dd>Yes. Press Print, then choose &quot;Save as PDF&quot; as the printer. You can text or email the PDF to your sitter.</dd><dt>What if it doesn&#x27;t fit on one page?</dt><dd>The text shrinks automatically. If it still doesn&#x27;t fit, you&#x27;ll see a red note under the preview. Shorten the longest boxes, or move extra details to the Notes box.</dd><dt>Should I write my door code on it?</dt><dd>We&#x27;d rather you didn&#x27;t. A sheet on the fridge can be seen by anyone who walks in, and sometimes from a window. Give codes to your sitter in person or by text.</dd></dl>
+<p class="meta">Updated 2026-11-20</p></div></main>
+<footer class="site-foot"><div class="wrap">
+<nav aria-label="Footer"><a href="/about/">About</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/contact/">Contact</a></nav>
+<p>© 2026 FridgeNote. Free printable sheets. Nothing you type leaves your browser.</p>
+</div></footer>
+<script src="/assets/sheet.js?v=849f746b"></script>
+</body>
+</html>

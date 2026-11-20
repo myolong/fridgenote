@@ -1,0 +1,90 @@
+{
+  "id": "pet-sitter",
+  "sheetTitle": "Pet Sitter Instructions",
+  "headKey": "owner",
+  "subFrom": "subtitle",
+  "openSections": 2,
+  "footerNote": "Thank you for looking after them!",
+  "sections": [
+    {
+      "key": "owner", "type": "fields", "title": "You & your trip", "sheetTitle": "How to reach us",
+      "skip": ["title", "subtitle", "dates"],
+      "fields": [
+        {"k": "title", "label": "Sheet title", "ph": "Pet Sitter Instructions"},
+        {"k": "subtitle", "label": "Line under the title", "ph": "For Max & Luna · 24 Maple St"},
+        {"k": "dates", "label": "Dates away", "ph": "Fri Jun 12 – Mon Jun 15"},
+        {"k": "name", "label": "Your name(s)", "short": "Owner", "ph": "Sam & Alex"},
+        {"k": "phone", "label": "Your phone", "short": "Phone", "ph": "(555) 123-4567"},
+        {"k": "where", "label": "Where you'll be", "short": "Staying at", "ph": "Hotel name, city"},
+        {"k": "text", "label": "Best way to reach you", "short": "Best contact", "ph": "Text first, call if urgent"}
+      ]
+    },
+    {
+      "key": "pets", "type": "repeat", "title": "Your pets", "sheetTitle": "Meet the pets", "item": "Pet", "max": 4, "wide": true,
+      "nameKey": "name", "lineKeys": ["kind"],
+      "hint": "Add one box per pet. Leave anything blank that doesn't apply.",
+      "fields": [
+        {"k": "name", "label": "Name", "ph": "Max"},
+        {"k": "kind", "label": "Kind, breed, age", "ph": "Dog, beagle mix, 6 yrs"},
+        {"k": "food", "label": "Food & amount", "short": "Food", "ph": "1 cup dry food (bin in pantry)"},
+        {"k": "feed", "label": "When to feed", "short": "Feeding", "ph": "7 AM and 6 PM"},
+        {"k": "treats", "label": "Treats", "short": "Treats", "ph": "2 small treats a day, max"},
+        {"k": "meds", "label": "Medicine (exactly as your vet told you)", "short": "Medicine", "ph": "1 pill with breakfast, wrapped in cheese", "long": true},
+        {"k": "habits", "label": "Habits & things to know", "short": "Good to know", "ph": "Scared of the vacuum. Pulls on the leash near squirrels.", "long": true},
+        {"k": "never", "label": "Never let them…", "short": "Never", "ph": "Eat grapes, go off-leash, upstairs"}
+      ]
+    },
+    {
+      "key": "schedule", "type": "checklist", "title": "Daily routine", "sheetTitle": "Daily routine", "col0": "Time", "col1": "What to do",
+      "ph0": "7:00 AM", "ph1": "Breakfast + pill", "wide": true,
+      "start": [["7:00 AM", ""], ["12:00 PM", ""], ["6:00 PM", ""], ["9:30 PM", ""]]
+    },
+    {
+      "key": "walks", "type": "fields", "title": "Walks, litter & play", "sheetTitle": "Walks, litter & play",
+      "fields": [
+        {"k": "walk", "label": "Walks", "ph": "20 min, morning and evening. Leash is by the front door."},
+        {"k": "potty", "label": "Bathroom / litter", "short": "Bathroom", "ph": "Scoop litter once a day. Bags under the sink."},
+        {"k": "play", "label": "Play & exercise", "short": "Play", "ph": "Loves fetch in the backyard"},
+        {"k": "sleep", "label": "Bedtime", "ph": "Sleeps in crate in the laundry room"}
+      ]
+    },
+    {
+      "key": "vet", "type": "fields", "title": "Vet & emergencies", "sheetTitle": "If something goes wrong", "cls": "alert",
+      "hint": "Ask your vet which emergency clinic they recommend and write it here.",
+      "fields": [
+        {"k": "vet", "label": "Regular vet", "short": "Vet", "ph": "Oak Street Animal Hospital"},
+        {"k": "vetphone", "label": "Vet phone & address", "short": "Vet phone", "ph": "(555) 222-3333 · 10 Oak St"},
+        {"k": "er", "label": "24-hour emergency clinic", "short": "24-hr clinic", "ph": "Name, phone, address"},
+        {"k": "poison", "label": "Pet poison helpline", "short": "Poison line", "ph": "Number your vet recommends"},
+        {"k": "backup", "label": "Backup contact nearby", "short": "Backup", "ph": "Neighbor Jordan · (555) 444-5555"},
+        {"k": "carrier", "label": "Carrier / records location", "short": "Carrier", "ph": "Hall closet, top shelf"}
+      ]
+    },
+    {
+      "key": "home", "type": "fields", "title": "Around the house", "sheetTitle": "Around the house",
+      "hint": "Don't write door or alarm codes on a sheet that will be visible from outside. Tell your sitter those in person.",
+      "fields": [
+        {"k": "supplies", "label": "Where supplies are", "short": "Supplies", "ph": "Food in pantry, towels in hall closet"},
+        {"k": "wifi", "label": "Wi-Fi", "ph": "Network & password"},
+        {"k": "trash", "label": "Trash day", "short": "Trash", "ph": "Bins out Tuesday night"},
+        {"k": "rules", "label": "House rules", "short": "Rules", "ph": "Pets not allowed on the couch", "long": true}
+      ]
+    },
+    {
+      "key": "notes", "type": "text", "title": "Anything else", "sheetTitle": "Notes", "wide": true,
+      "ph": "Help yourself to snacks in the fridge!"
+    }
+  ],
+  "example": {
+    "owner": {"title": "Pet Sitter Instructions", "subtitle": "For Max & Luna · Thank you for helping!", "dates": "Fri Jun 12 – Mon Jun 15", "name": "Sam & Alex", "phone": "(555) 123-4567", "where": "Lakeview Inn, Traverse City", "text": "Text anytime. Call if it's urgent."},
+    "pets": [
+      {"name": "Max", "kind": "Dog · beagle mix · 6 yrs", "food": "1 cup dry food (bin in pantry)", "feed": "7 AM and 6 PM", "treats": "2 small treats a day", "meds": "1 allergy pill with breakfast. Hide it in a bit of cheese.", "habits": "Barks at the mail carrier, then settles down. Pulls on the leash near squirrels.", "never": "Grapes, chocolate, off-leash walks"},
+      {"name": "Luna", "kind": "Cat · 3 yrs", "food": "Half a can wet food + small scoop dry", "feed": "7 AM and 6 PM", "habits": "Shy. She may hide under the bed the first day. That's normal.", "never": "Let her out the front door"}
+    ],
+    "schedule": [["7:00 AM", "Feed both. Max's pill. Short walk."], ["12:00 PM", "Let Max out in the backyard. Fresh water."], ["6:00 PM", "Feed both. 20-minute walk."], ["9:30 PM", "Scoop litter. Max into his crate."]],
+    "walks": {"walk": "20 min morning and evening. Leash and bags by the front door.", "potty": "Scoop Luna's litter once a day. Bags under the bathroom sink.", "play": "Max loves fetch. Luna likes the feather toy.", "sleep": "Max sleeps in his crate in the laundry room."},
+    "vet": {"vet": "Oak Street Animal Hospital", "vetphone": "(555) 222-3333 · 10 Oak St", "er": "Northside 24-Hour Pet ER · (555) 999-0000", "backup": "Neighbor Jordan · (555) 444-5555", "carrier": "Hall closet, top shelf"},
+    "home": {"supplies": "Food in the pantry. Old towels in the hall closet.", "wifi": "MapleHouse · see card on the fridge", "trash": "Bins out Tuesday night", "rules": "Max isn't allowed on the couch."},
+    "notes": "Help yourself to anything in the fridge. Thank you so much!"
+  }
+}
