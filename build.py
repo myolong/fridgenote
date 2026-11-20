@@ -37,12 +37,12 @@ BASE = re.sub(r"^https?://[^/]+", "", SITE_URL).rstrip("/")  # "/fridgenote" on 
 TOOLS = [
     ("pet-sitter-instructions", "sheet"),
     ("babysitter-information-sheet", "sheet"),
+    ("house-sitter-checklist", "sheet"),
     ("vacation-rental-welcome-book", "sheet"),
     ("wifi-qr-code-card", "wifi"),
 ]
-SOON = [
-    ("House sitter checklist", "Plants, mail, trash day, and thermostat for a neighbor."),
-]
+SOON = []
+GUIDES_DIR = SRC / "guides"   # one guide = src/guides/<slug>.html, first line <!--{json meta}-->
 PAGES = ["about", "privacy", "terms", "contact"]
 
 
@@ -70,7 +70,7 @@ def layout(path, title, desc, body, extra_head="", scripts="", jsonld=None, curr
     def nav_link(href, label):
         cur = ' aria-current="page"' if href == current else ""
         return f'<a href="{href}"{cur}>{label}</a>'
-    nav = "".join(nav_link(h, l) for h, l in [("/pet-sitter-instructions/", "Pet sitter"), ("/babysitter-information-sheet/", "Babysitter"), ("/vacation-rental-welcome-book/", "Welcome book"), ("/wifi-qr-code-card/", "Wi-Fi card")])
+    nav = "".join(nav_link(h, l) for h, l in [("/pet-sitter-instructions/", "Pet sitter"), ("/babysitter-information-sheet/", "Babysitter"), ("/house-sitter-checklist/", "House sitter"), ("/vacation-rental-welcome-book/", "Welcome book"), ("/wifi-qr-code-card/", "Wi-Fi card"), ("/guides/", "Guides")])
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -97,7 +97,7 @@ def layout(path, title, desc, body, extra_head="", scripts="", jsonld=None, curr
 </div></header>
 <main>{body}</main>
 <footer class="site-foot"><div class="wrap">
-<nav aria-label="Footer"><a href="/about/">About</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/contact/">Contact</a></nav>
+<nav aria-label="Footer"><a href="/guides/">Guides</a><a href="/about/">About</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/contact/">Contact</a></nav>
 <p>© {date.today().year} {SITE_NAME}. Free printable sheets. Nothing you type leaves your browser.</p>
 </div></footer>
 {scripts}
@@ -174,6 +174,65 @@ def wifi_tool():
     return tool, f'<script src="{asset("qrcode.js")}"></script><script src="{asset("wifi.js")}"></script>'
 
 
+def load_guides():
+    out = []
+    if not GUIDES_DIR.exists():
+        return out
+    for f in sorted(GUIDES_DIR.glob("*.html")):
+        raw = f.read_text(encoding="utf-8")
+        m = re.match(r"<!--(\{.*?\})-->\s*", raw, re.S)
+        meta = json.loads(m.group(1))
+        meta["slug"] = f.stem
+        meta["html"] = raw[m.end():]
+        out.append(meta)
+    out.sort(key=lambda g: g.get("order", 99))
+    return out
+
+
+def guide_links(guides, title="Guides"):
+    if not guides:
+        return ""
+    items = "".join(f'<li><a href="/guides/{g["slug"]}/">{esc(g["h1"])}</a></li>' for g in guides)
+    return f"<h2>{esc(title)}</h2><ul>{items}</ul>"
+
+
+def render_guide(g, guides, tool_meta):
+    path = f"/guides/{g['slug']}/"
+    tool = tool_meta.get(g.get("tool"))
+    cta = ""
+    if tool:
+        cta = (f'<div class="cta"><p><strong>Make your own in a minute.</strong> {esc(tool["card"])}</p>'
+               f'<a class="btn primary" href="/{g["tool"]}/">Open the {esc(tool["h1"].lower())} maker</a></div>')
+    related = [x for x in guides if x["slug"] != g["slug"] and (x.get("tool") == g.get("tool") or x.get("group") == g.get("group"))][:4]
+    faq = g.get("faq", [])
+    pub = g.get("date", TODAY)
+    body = (f'<article class="wrap narrow content"><p class="crumbs"><a href="/guides/">Guides</a></p>'
+            f'<h1>{esc(g["h1"])}</h1><p class="lead">{esc(g["lead"])}</p>'
+            f'<p class="meta">Updated <time datetime="{pub}">{pub}</time></p>'
+            f'{fill(g["html"])}{cta}{faq_html(faq) if faq else ""}{guide_links(related, "Related guides")}</article>')
+    ld = [{"@context": "https://schema.org", "@type": "Article", "headline": g["h1"], "description": g["description"],
+           "datePublished": pub, "dateModified": pub, "mainEntityOfPage": SITE_URL + path,
+           "publisher": {"@type": "Organization", "name": SITE_NAME}}]
+    if faq:
+        ld.append(faq_ld(faq))
+    write(path, layout(path, g["title"], g["description"], body, jsonld=ld, current="/guides/"))
+    return path
+
+
+def render_guides_index(guides):
+    groups = {}
+    for g in guides:
+        groups.setdefault(g.get("group", "More"), []).append(g)
+    parts = []
+    for name, items in groups.items():
+        cards = "".join(f'<a class="glink" href="/guides/{g["slug"]}/"><strong>{esc(g["h1"])}</strong><span>{esc(g["description"])}</span></a>' for g in items)
+        parts.append(f"<h2>{esc(name)}</h2><div class=\"glist\">{cards}</div>")
+    body = ('<div class="wrap narrow content"><h1>Guides</h1>'
+            '<p class="lead">Checklists and real examples for leaving your home, pets, or kids in someone else\'s hands.</p>'
+            + "".join(parts) + "</div>")
+    write("/guides/", layout("/guides/", f"Guides | {SITE_NAME}", "Checklists and examples for pet sitters, babysitters, house sitters, and vacation rental guests.", body, current="/guides/"))
+
+
 def build():
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -182,6 +241,8 @@ def build():
     shutil.copy(SRC / "assets" / "favicon.svg", OUT / "favicon.svg")
     urls = ["/"]
     cards = []
+    guides = load_guides()
+    tool_meta = {}
     for slug, kind in TOOLS:
         d = SRC / "tools" / slug
         meta = json.loads((d / "page.json").read_text(encoding="utf-8"))
@@ -191,12 +252,14 @@ def build():
         else:
             tool, scripts = wifi_tool()
         path = f"/{slug}/"
+        tool_meta[slug] = meta
+        rel = guide_links([g for g in guides if g.get("tool") == slug], "Guides & examples")
         body = f"""<div class="wrap content">
 <h1>{esc(meta['h1'])}</h1>
 <p class="lead">{esc(meta['lead'])}</p>
 </div>
 <div class="wrap">{tool}</div>
-<div class="wrap narrow content">{fill(body_txt)}{faq_html(meta['faq'])}
+<div class="wrap narrow content">{fill(body_txt)}{rel}{faq_html(meta['faq'])}
 <p class="meta">Updated {TODAY}</p></div>"""
         write(path, layout(path, meta["title"], meta["description"], body, scripts=scripts,
                            jsonld=[app_ld(meta, path), faq_ld(meta["faq"])], current=path))
@@ -214,6 +277,7 @@ def build():
 <div class="cards">{''.join(cards)}</div>
 </div>
 <div class="wrap narrow content">
+{guide_links(guides, "Guides & checklists")}
 <h2>Why a printed sheet still beats a text message</h2>
 <p>Texts get buried. A sheet on the fridge is the first thing a sitter sees, it works when their phone is charging, and it's easy to point to when you're on the phone together. Send a PDF copy too, and they have it both ways.</p>
 <h2>How it works</h2>
@@ -234,6 +298,11 @@ def build():
         write(path, layout(path, meta["title"], meta["description"], body, current=path))
         urls.append(path)
 
+    for g in guides:
+        urls.append(render_guide(g, guides, tool_meta))
+    if guides:
+        render_guides_index(guides)
+        urls.append("/guides/")
     write("/404.html", layout("/404.html", f"Page not found | {SITE_NAME}", "Page not found.",
                               '<div class="wrap narrow content"><h1>Page not found</h1><p>That page doesn\'t exist. <a href="/">Go to the home page</a>.</p></div>'))
     sm = "".join(f"<url><loc>{SITE_URL}{u}</loc><lastmod>{TODAY}</lastmod></url>" for u in urls)

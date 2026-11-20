@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>House Sitter Checklist (Free, Printable) | FridgeNote</title>
+<meta name="description" content="Make a printable house sitter checklist: what to do each visit, plant watering, trash day, thermostat, water shutoff, and emergency contacts. Free, no sign-up.">
+<link rel="canonical" href="https://myolong.github.io/fridgenote/house-sitter-checklist/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FridgeNote">
+<meta property="og:title" content="House Sitter Checklist (Free, Printable) | FridgeNote">
+<meta property="og:description" content="Make a printable house sitter checklist: what to do each visit, plant watering, trash day, thermostat, water shutoff, and emergency contacts. Free, no sign-up.">
+<meta property="og:url" content="https://myolong.github.io/fridgenote/house-sitter-checklist/">
+<meta name="theme-color" content="#fbf8f1">
+<link rel="icon" href="/fridgenote/assets/favicon.svg?v=f1297172" type="image/svg+xml">
+<link rel="stylesheet" href="/fridgenote/assets/style.css?v=a2c98f32">
+<style id="page-size">@page { size: letter; margin: 0; }</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "House sitter checklist", "url": "https://myolong.github.io/fridgenote/house-sitter-checklist/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Make a printable house sitter checklist: what to do each visit, plant watering, trash day, thermostat, water shutoff, and emergency contacts. Free, no sign-up."}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What should a house sitter do on each visit?", "acceptedAnswer": {"@type": "Answer", "text": "Usually: bring in mail and packages, check for leaks or anything unusual, water plants on schedule, change which lights are on, and lock up. Put your own list in the \"Each visit\" box so nothing gets skipped."}}, {"@type": "Question", "name": "Should I turn off the heat when I'm away in winter?", "acceptedAnswer": {"@type": "Answer", "text": "Most people leave it on at a low setting so pipes don't freeze. Check what's right for your home and climate, and write the setting on the sheet so your sitter doesn't change it."}}, {"@type": "Question", "name": "Where does my information go?", "acceptedAnswer": {"@type": "Answer", "text": "Nowhere. The sheet is made in your browser and nothing you type is uploaded. Drafts are saved only in this browser if you leave that option on."}}, {"@type": "Question", "name": "Should I write my alarm code here?", "acceptedAnswer": {"@type": "Answer", "text": "We'd recommend against it. Give codes to your sitter in person or by text."}}]}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+<a class="logo" href="/fridgenote/"><img class="logo-mark" src="/fridgenote/assets/logo.svg?v=f1297172" alt="" width="34" height="34">FridgeNote</a>
+<nav class="nav" aria-label="Main"><a href="/fridgenote/pet-sitter-instructions/">Pet sitter</a><a href="/fridgenote/babysitter-information-sheet/">Babysitter</a><a href="/fridgenote/house-sitter-checklist/" aria-current="page">House sitter</a><a href="/fridgenote/vacation-rental-welcome-book/">Welcome book</a><a href="/fridgenote/wifi-qr-code-card/">Wi-Fi card</a><a href="/fridgenote/guides/">Guides</a></nav>
+</div></header>
+<main><div class="wrap content">
+<h1>House sitter checklist</h1>
+<p class="lead">For a neighbor, friend, or house sitter who stops by while you&#x27;re away. One page, with what to check each visit and who to call.</p>
+</div>
+<div class="wrap"><div class="tool">
+<div class="panel no-print">
+<div class="bar no-print">
+<button type="button" class="btn primary" id="btn-print">Print or save PDF</button>
+<span class="seg" role="radiogroup" aria-label="Paper size"><label><input type="radio" name="paper" value="letter"><span>Letter</span></label><label><input type="radio" name="paper" value="a4"><span>A4</span></label></span>
+</div>
+<div class="bar"><button type="button" class="btn small" id="btn-example">Load example</button><button type="button" class="btn small" id="btn-clear">Clear all</button></div>
+<form id="sheet-form" onsubmit="return false"></form>
+<label class="check"><input type="checkbox" id="save-draft"> Save a draft on this device</label>
+<p class="privacy-note">What you type stays in this browser. Nothing is uploaded.</p>
+</div>
+<div class="stage"><div class="stage-inner"><div class="scaler" id="scaler"><div class="sheet letter" id="sheet"></div></div></div><p class="fit-note no-print" id="fit-note"></p></div>
+</div>
+<script type="application/json" id="sheet-config">{"id": "house-sitter", "sheetTitle": "House Sitter Checklist", "headKey": "owner", "subFrom": "subtitle", "openSections": 2, "footerNote": "Thanks for keeping an eye on the place!", "sections": [{"key": "owner", "type": "fields", "title": "You & your trip", "sheetTitle": "How to reach us", "skip": ["title", "subtitle", "dates"], "fields": [{"k": "title", "label": "Sheet title", "ph": "House Sitter Checklist"}, {"k": "subtitle", "label": "Line under the title", "ph": "24 Maple St · Thank you!"}, {"k": "dates", "label": "Dates away", "ph": "Dec 20 – Jan 3"}, {"k": "name", "label": "Your name(s)", "short": "Owner", "ph": "Sam & Alex"}, {"k": "phone", "label": "Your phone", "short": "Phone", "ph": "(555) 123-4567"}, {"k": "where", "label": "Where you'll be", "short": "Staying at", "ph": "Visiting family in Denver"}, {"k": "tz", "label": "Time difference", "short": "Time zone", "ph": "2 hours behind you"}]}, {"key": "visits", "type": "checklist", "title": "Each visit", "sheetTitle": "Each visit", "col0": "Task", "col1": "Details", "ph0": "Mail", "ph1": "Bring in mail and packages", "wide": true, "hint": "Things to do every time they stop by.", "start": [["Mail", ""], ["Lights", ""], ["Check", ""], ["Lock up", ""]]}, {"key": "plants", "type": "repeat", "title": "Plants", "sheetTitle": "Plants", "item": "Plant", "max": 6, "wide": true, "nameKey": "name", "lineKeys": ["where"], "fields": [{"k": "name", "label": "Plant", "ph": "Fiddle-leaf fig"}, {"k": "where", "label": "Where", "ph": "Living room window"}, {"k": "water", "label": "Water", "short": "Water", "ph": "2 cups every Saturday"}, {"k": "note", "label": "Note", "short": "Note", "ph": "Only if the top inch of soil is dry"}]}, {"key": "weekly", "type": "fields", "title": "Trash, mail & deliveries", "sheetTitle": "Trash, mail & deliveries", "fields": [{"k": "trash", "label": "Trash day", "short": "Trash", "ph": "Bins to the curb Monday night, back in Tuesday"}, {"k": "recycling", "label": "Recycling", "ph": "Every other Monday (Dec 22, Jan 5)"}, {"k": "mail", "label": "Mail", "ph": "Stack on the kitchen counter"}, {"k": "packages", "label": "Packages", "ph": "Bring inside. Expecting one on Dec 23."}]}, {"key": "systems", "type": "fields", "title": "Heat, water & power", "sheetTitle": "Heat, water & power", "fields": [{"k": "thermostat", "label": "Thermostat", "ph": "Leave at 60°F. Don't turn heat off (pipes can freeze)."}, {"k": "water", "label": "Main water shutoff", "short": "Water shutoff", "ph": "Basement, left of the stairs"}, {"k": "breaker", "label": "Breaker panel", "short": "Breakers", "ph": "Garage, behind the door"}, {"k": "outage", "label": "If the power goes out", "short": "Power out", "ph": "Flashlight in the kitchen drawer. Call the utility at..."}]}, {"key": "emergency", "type": "fields", "title": "Emergencies", "sheetTitle": "If something goes wrong", "cls": "alert", "hint": "In the US and Canada, call 911 for fire, break-ins, or medical emergencies.", "fields": [{"k": "first", "label": "First step", "short": "First", "ph": "Call 911 if anyone is in danger, then call us"}, {"k": "address", "label": "This home's address", "short": "Address", "ph": "24 Maple St, Springfield"}, {"k": "neighbor", "label": "Neighbor with a key", "short": "Neighbor", "ph": "Jordan next door · (555) 444-5555"}, {"k": "plumber", "label": "Plumber or handyman you use", "short": "Repairs", "ph": "Name · phone"}]}, {"key": "notes", "type": "text", "title": "Anything else", "sheetTitle": "Notes", "wide": true, "ph": "Feel free to use the guest room if the weather gets bad."}], "example": {"owner": {"title": "House Sitter Checklist", "subtitle": "24 Maple St · Thank you for checking in!", "dates": "Dec 20 – Jan 3", "name": "Sam & Alex", "phone": "(555) 123-4567", "where": "Visiting family in Denver", "tz": "We're 2 hours behind you"}, "visits": [["Mail", "Bring in mail and any packages"], ["Lights", "Switch which lamp is on so the house looks lived-in"], ["Check", "Quick walk-through: leaks under sinks, doors, windows"], ["Lock up", "Front and back doors, then text us a thumbs-up"]], "plants": [{"name": "Fiddle-leaf fig", "where": "Living room window", "water": "2 cups every Saturday", "note": "Only if the top inch of soil is dry"}, {"name": "Herbs", "where": "Kitchen sill", "water": "A splash every visit", "note": "They dry out fast"}], "weekly": {"trash": "Bins to the curb Monday night, back in Tuesday", "recycling": "Every other Monday (Dec 22 and Jan 5)", "mail": "Stack on the kitchen counter", "packages": "Bring inside. One is coming around Dec 23."}, "systems": {"thermostat": "Leave at 60°F. Please don't turn the heat off, pipes can freeze.", "water": "Basement, left of the stairs (red handle)", "breaker": "Garage, behind the door", "outage": "Flashlight in the kitchen drawer. Let us know and we'll call the utility."}, "emergency": {"first": "Call 911 if anyone is in danger, then call us", "address": "24 Maple St, Springfield", "neighbor": "Jordan next door · (555) 444-5555", "plumber": "Mike's Plumbing · (555) 777-8888"}, "notes": "Help yourself to anything in the pantry. Thank you so much!"}}</script></div>
+<div class="wrap narrow content"><h2>How to use it</h2>
+<ol>
+  <li><strong>List what to do each visit.</strong> Four or five short tasks is plenty. Each one gets a checkbox on the printout.</li>
+  <li><strong>Add plants, trash days, and the basics of the house.</strong> The water shutoff and breaker panel are worth a line even if nothing goes wrong.</li>
+  <li><strong>Print it and walk through the house together.</strong> Show your sitter where the shutoff and breakers actually are.</li>
+</ol>
+
+<h2>What to cover</h2>
+<table>
+  <thead><tr><th>Section</th><th>Why it matters</th></tr></thead>
+  <tbody>
+    <tr><td>Each visit</td><td>A short checklist keeps visits quick and consistent.</td></tr>
+    <tr><td>Plants</td><td>"Water the plants" leads to drowned plants. Amounts and days don't.</td></tr>
+    <tr><td>Trash, mail &amp; deliveries</td><td>A pile of mail or a bin left out for a week tells passersby nobody's home.</td></tr>
+    <tr><td>Heat, water &amp; power</td><td>A burst pipe is the most expensive thing that can happen while you're gone. Knowing where the shutoff is helps.</td></tr>
+    <tr><td>If something goes wrong</td><td>Your address, a neighbor with a key, and the repair person you trust.</td></tr>
+  </tbody>
+</table>
+
+<h2>Tips</h2>
+<ul>
+  <li><strong>Write recycling dates, not just the day.</strong> "Every other Monday" is easy to get wrong. "Dec 22 and Jan 5" isn't.</li>
+  <li><strong>Mention the time difference</strong> if you're traveling, so your sitter knows when it's OK to call.</li>
+  <li><strong>Ask for a quick text after each visit.</strong> It's reassuring, and it reminds them the visit counts.</li>
+</ul>
+<h2>Guides &amp; examples</h2><ul><li><a href="/fridgenote/guides/vacation-checklist-before-leaving-home/">Vacation checklist: what to do before leaving home</a></li></ul><h2>Questions</h2><dl class="faq"><dt>What should a house sitter do on each visit?</dt><dd>Usually: bring in mail and packages, check for leaks or anything unusual, water plants on schedule, change which lights are on, and lock up. Put your own list in the &quot;Each visit&quot; box so nothing gets skipped.</dd><dt>Should I turn off the heat when I&#x27;m away in winter?</dt><dd>Most people leave it on at a low setting so pipes don&#x27;t freeze. Check what&#x27;s right for your home and climate, and write the setting on the sheet so your sitter doesn&#x27;t change it.</dd><dt>Where does my information go?</dt><dd>Nowhere. The sheet is made in your browser and nothing you type is uploaded. Drafts are saved only in this browser if you leave that option on.</dd><dt>Should I write my alarm code here?</dt><dd>We&#x27;d recommend against it. Give codes to your sitter in person or by text.</dd></dl>
+<p class="meta">Updated 2026-11-20</p></div></main>
+<footer class="site-foot"><div class="wrap">
+<nav aria-label="Footer"><a href="/fridgenote/guides/">Guides</a><a href="/fridgenote/about/">About</a><a href="/fridgenote/privacy/">Privacy</a><a href="/fridgenote/terms/">Terms</a><a href="/fridgenote/contact/">Contact</a></nav>
+<p>© 2026 FridgeNote. Free printable sheets. Nothing you type leaves your browser.</p>
+</div></footer>
+<script src="/fridgenote/assets/sheet.js?v=37067846"></script>
+</body>
+</html>
