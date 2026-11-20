@@ -291,8 +291,12 @@
     fitNote.style.color = over ? "#b42318" : "";
     scale();
   }
+  function innerWidth(box) {
+    var cs = getComputedStyle(box);
+    return box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+  }
   function scale() {
-    var avail = scaler.parentElement.clientWidth;
+    var avail = innerWidth(scaler.parentElement);
     var w = sheet.offsetWidth, h = sheet.offsetHeight;
     var k = Math.min(1, avail / w);
     sheet.style.transform = "scale(" + k + ")";
@@ -326,6 +330,8 @@
       buildForm(); changed();
     });
     window.addEventListener("resize", scale);
+    window.addEventListener("load", scale);
+    if (window.ResizeObserver) new ResizeObserver(function () { scale(); }).observe(scaler.parentElement);
   }
 
   load();

@@ -53,8 +53,12 @@
     scale();
     try { if (state.save) localStorage.setItem(KEY, JSON.stringify(state)); else localStorage.removeItem(KEY); } catch (e) { /* ignore */ }
   }
+  function innerWidth(box) {
+    var cs = getComputedStyle(box);
+    return box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+  }
   function scale() {
-    var avail = scaler.parentElement.clientWidth, w = sheet.offsetWidth, h = sheet.offsetHeight, k = Math.min(1, avail / w);
+    var avail = innerWidth(scaler.parentElement), w = sheet.offsetWidth, h = sheet.offsetHeight, k = Math.min(1, avail / w);
     sheet.style.transform = "scale(" + k + ")"; scaler.style.width = w * k + "px"; scaler.style.height = h * k + "px";
   }
   function setPage() { $("page-size").textContent = "@page { size: " + (state.paper === "a4" ? "A4" : "letter") + "; margin: 0; }"; }
@@ -77,5 +81,7 @@
   sv.addEventListener("change", function () { state.save = sv.checked; render(); });
   $("btn-print").addEventListener("click", function () { window.print(); });
   window.addEventListener("resize", scale);
+    window.addEventListener("load", scale);
+    if (window.ResizeObserver) new ResizeObserver(function () { scale(); }).observe(scaler.parentElement);
   setPage(); render();
 })();
