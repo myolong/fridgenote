@@ -1,0 +1,91 @@
+{
+  "id": "babysitter",
+  "sheetTitle": "Babysitter Information Sheet",
+  "headKey": "parents",
+  "subFrom": "subtitle",
+  "openSections": 2,
+  "footerNote": "Thank you for taking care of our kids!",
+  "sections": [
+    {
+      "key": "parents", "type": "fields", "title": "Parents & tonight", "sheetTitle": "How to reach us",
+      "skip": ["title", "subtitle", "dates"],
+      "fields": [
+        {"k": "title", "label": "Sheet title", "ph": "Babysitter Information Sheet"},
+        {"k": "subtitle", "label": "Line under the title", "ph": "For Emma & Leo"},
+        {"k": "dates", "label": "When you'll be away", "ph": "Sat 6 PM – 11 PM"},
+        {"k": "p1", "label": "Parent 1 name & phone", "short": "Parent", "ph": "Jamie · (555) 123-4567"},
+        {"k": "p2", "label": "Parent 2 name & phone", "short": "Parent", "ph": "Chris · (555) 765-4321"},
+        {"k": "where", "label": "Where you'll be", "short": "We'll be at", "ph": "Dinner at Rosa's, 12 Main St"},
+        {"k": "back", "label": "Expected home", "short": "Home by", "ph": "About 11 PM"}
+      ]
+    },
+    {
+      "key": "kids", "type": "repeat", "title": "The kids", "sheetTitle": "The kids", "item": "Child", "max": 4, "wide": true,
+      "nameKey": "name", "lineKeys": ["age"],
+      "hint": "One box per child. Blank boxes won't print.",
+      "fields": [
+        {"k": "name", "label": "Name", "ph": "Emma"},
+        {"k": "age", "label": "Age", "ph": "6 yrs"},
+        {"k": "allergy", "label": "Allergies", "short": "Allergies", "ph": "Peanuts (severe)"},
+        {"k": "meds", "label": "Medicine (exactly as your doctor told you)", "short": "Medicine", "ph": "None tonight", "long": true},
+        {"k": "food", "label": "Food & snacks", "short": "Food", "ph": "Pasta in the fridge. One snack after dinner."},
+        {"k": "bed", "label": "Bedtime routine", "short": "Bedtime", "ph": "Bath, 2 books, lights out 8 PM", "long": true},
+        {"k": "comfort", "label": "Comfort & calming", "short": "Comfort", "ph": "Bunny named Pip. Likes a nightlight."},
+        {"k": "notes", "label": "Good to know", "short": "Good to know", "ph": "May ask for a 3rd book. One is fine.", "long": true}
+      ]
+    },
+    {
+      "key": "schedule", "type": "checklist", "title": "Tonight's plan", "sheetTitle": "Tonight's plan", "col0": "Time", "col1": "What happens",
+      "ph0": "6:30 PM", "ph1": "Dinner", "wide": true,
+      "start": [["6:30 PM", ""], ["7:00 PM", ""], ["7:30 PM", ""], ["8:00 PM", ""]]
+    },
+    {
+      "key": "rules", "type": "fields", "title": "House rules", "sheetTitle": "House rules",
+      "fields": [
+        {"k": "screen", "label": "Screen time", "short": "Screens", "ph": "30 min of shows, no tablets after 7:30"},
+        {"k": "snacks", "label": "Snacks & sweets", "short": "Sweets", "ph": "Fruit is fine. No candy."},
+        {"k": "outside", "label": "Going outside", "short": "Outside", "ph": "Backyard only, with you"},
+        {"k": "visitors", "label": "Visitors & doors", "short": "Doors", "ph": "Don't open the door for anyone you don't know"},
+        {"k": "other", "label": "Anything else", "short": "Also", "ph": "Sitter can help herself to snacks"}
+      ]
+    },
+    {
+      "key": "emergency", "type": "fields", "title": "Emergencies", "sheetTitle": "In an emergency", "cls": "alert",
+      "hint": "In the US and Canada, call 911 first in an emergency. Writing the home address here helps the sitter tell the dispatcher where to come.",
+      "fields": [
+        {"k": "first", "label": "First step", "short": "First", "ph": "Call 911, then call us"},
+        {"k": "address", "label": "This home's address (for 911)", "short": "Address", "ph": "24 Maple St, Springfield"},
+        {"k": "poison", "label": "Poison Control", "short": "Poison Control", "ph": "1-800-222-1222 (US)"},
+        {"k": "doctor", "label": "Pediatrician", "short": "Doctor", "ph": "Dr. Patel · (555) 888-1212"},
+        {"k": "backup", "label": "Backup adult nearby", "short": "Backup", "ph": "Grandma Ruth · (555) 333-2222"},
+        {"k": "firstaid", "label": "First aid kit location", "short": "First aid kit", "ph": "Under the bathroom sink"}
+      ]
+    },
+    {
+      "key": "home", "type": "fields", "title": "Around the house", "sheetTitle": "Around the house",
+      "hint": "Don't write door or alarm codes on a sheet that can be seen from outside.",
+      "fields": [
+        {"k": "wifi", "label": "Wi-Fi", "ph": "Network & password"},
+        {"k": "tv", "label": "TV / streaming", "short": "TV", "ph": "Kids profile on the living room TV"},
+        {"k": "where", "label": "Where things are", "short": "Where", "ph": "Flashlight in the kitchen drawer, PJs in top drawer", "long": true},
+        {"k": "pets", "label": "Pets", "ph": "Cat may hide. Don't let her out."}
+      ]
+    },
+    {
+      "key": "notes", "type": "text", "title": "Anything else", "sheetTitle": "Notes", "wide": true,
+      "ph": "Pizza money is on the counter."
+    }
+  ],
+  "example": {
+    "parents": {"title": "Babysitter Information Sheet", "subtitle": "For Emma & Leo · Thanks for coming!", "dates": "Sat 6 PM – 11 PM", "p1": "Jamie · (555) 123-4567", "p2": "Chris · (555) 765-4321", "where": "Dinner at Rosa's, 12 Main St", "back": "About 11 PM"},
+    "kids": [
+      {"name": "Emma", "age": "6 yrs", "allergy": "Peanuts (severe). EpiPen is in the kitchen drawer by the fridge.", "food": "Pasta in the fridge, 1 minute in the microwave.", "bed": "Bath, pajamas, 2 books. Lights out 8:00 PM.", "comfort": "Bunny named Pip. Leave the nightlight on.", "notes": "Will ask for a 3rd book. One more is fine."},
+      {"name": "Leo", "age": "3 yrs", "allergy": "None", "food": "Same pasta, cut small. Milk in a sippy cup.", "bed": "Diaper, 1 book, white noise on. Asleep by 7:30 PM.", "comfort": "Blue blanket. Rub his back if he cries.", "notes": "Gets cranky when tired. That's normal."}
+    ],
+    "schedule": [["6:30 PM", "Dinner at the kitchen table"], ["7:00 PM", "Bath for both"], ["7:30 PM", "Leo to bed"], ["8:00 PM", "Emma to bed"]],
+    "rules": {"screen": "30 min of shows after dinner. Kids profile only.", "snacks": "Fruit or yogurt. No candy tonight.", "outside": "Not after dark.", "visitors": "Don't open the door for anyone you don't know.", "other": "Help yourself to anything in the fridge."},
+    "emergency": {"first": "Call 911, then call us", "address": "24 Maple St, Springfield", "poison": "1-800-222-1222", "doctor": "Dr. Patel · (555) 888-1212", "backup": "Grandma Ruth (5 min away) · (555) 333-2222", "firstaid": "Under the bathroom sink"},
+    "home": {"wifi": "MapleHouse · see card on the fridge", "tv": "Kids profile on the living room TV", "where": "Flashlight in the kitchen drawer. Pajamas in the top dresser drawer.", "pets": "Our cat Luna may hide. Please don't let her out."},
+    "notes": "Pizza money is on the counter if you'd rather order in. Thank you!"
+  }
+}

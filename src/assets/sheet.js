@@ -122,6 +122,7 @@
     return el("section", { class: "blk " + (cls || "") }, [el("h2", {}, [el("span", { class: "dot" }), title]), content]);
   }
   function renderSheet() {
+    if (CFG.book) return renderBook();
     sheet.className = "sheet " + state.paper + (CFG.sheetClass ? " " + CFG.sheetClass : "");
     var pad = el("div", { class: "sheet-pad" });
     var head = state[CFG.headKey] || {};
@@ -174,6 +175,109 @@
     sheet.innerHTML = "";
     sheet.appendChild(pad);
     fit();
+  }
+
+
+  // ---------- multi-page book (welcome book) ----------
+  function qrSvg(text) {
+    if (typeof qrcode === "undefined") return null;
+    qrcode.stringToBytes = qrcode.stringToBytesFuncs["UTF-8"];
+    var q = qrcode(0, "M"); q.addData(text); q.make();
+    var n = q.getModuleCount(), m = 2, size = n + m * 2, d = "";
+    for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) if (q.isDark(r, c)) d += "M" + (c + m) + " " + (r + m) + "h1v1h-1z";
+    var span = document.createElement("span");
+    span.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + size + " " + size + '" shape-rendering="crispEdges" role="img" aria-label="Wi-Fi QR code"><rect width="100%" height="100%" fill="#fff"/><path d="' + d + '" fill="#000"/></svg>';
+    return span.firstChild;
+  }
+  function wifiText(w) {
+    var e = function (x) { return String(x).replace(/([\;,:"])/g, "\\$1"); };
+    return "WIFI:T:" + (has(w.pass) ? "WPA" : "nopass") + ";S:" + e(w.ssid) + ";" + (has(w.pass) ? "P:" + e(w.pass) + ";" : "") + ";";
+  }
+  function sectionNode(sec) {
+    var v = state[sec.key];
+    if (sec.type === "fields") { var c = dl(sec.fields, v, sec.skip); return c ? [c] : null; }
+    if (sec.type === "text") return has(v) ? [el("p", { text: v })] : null;
+    if (sec.type === "rows" || sec.type === "checklist") {
+      var rows = v.filter(function (r) { return has(r[0]) || has(r[1]); });
+      if (!rows.length) return null;
+      var tb = el("tbody");
+      rows.forEach(function (r) {
+        var tr = el("tr");
+        if (sec.type === "checklist") tr.appendChild(el("td", { class: "box" }));
+        tr.appendChild(el("td", { class: "t", text: r[0] || "" }));
+        tr.appendChild(el("td", { text: r[1] || "" }));
+        tb.appendChild(tr);
+      });
+      return [el("table", {}, [tb])];
+    }
+    if (sec.type === "repeat") {
+      var items = v.filter(function (o) { return sec.fields.some(function (f) { return has(o[f.k]); }); });
+      if (!items.length) return null;
+      return items.map(function (o) {
+        var line = (sec.lineKeys || []).map(function (k) { return o[k]; }).filter(has).join(" · ");
+        var rest = sec.fields.filter(function (f) { return f.k !== sec.nameKey && (sec.lineKeys || []).indexOf(f.k) < 0; });
+        var body = rest.map(function (f) { return has(o[f.k]) ? el("p", { text: o[f.k] }) : null; }).filter(Boolean);
+        return el("div", { class: "bk-item" }, [el("h3", { text: (o[sec.nameKey] || sec.item) + (line ? "  ·  " + line : "") })].concat(body));
+      });
+    }
+    return null;
+  }
+  function newPage(n) {
+    var page = el("div", { class: "sheet bk-page " + state.paper });
+    var pad = el("div", { class: "sheet-pad" });
+    var body = el("div", { class: "bk-body" });
+    pad.appendChild(body);
+    pad.appendChild(el("footer", { class: "sh-foot" }, [el("span", { text: (state[CFG.headKey] || {}).place || "" }), el("span", { text: String(n) })]));
+    page.appendChild(pad);
+    return { page: page, body: body };
+  }
+  function renderBook() {
+    sheet.className = "book";
+    sheet.innerHTML = "";
+    sheet.style.fontSize = "15px";
+    var head = state[CFG.headKey] || {};
+    // cover
+    var n = 1, cur = newPage(n);
+    sheet.appendChild(cur.page);
+    var cover = el("div", { class: "bk-cover" }, [
+      el("div", { class: "bk-kicker", text: has(head.place) ? head.place : "" }),
+      el("h1", { text: has(head.title) ? head.title : CFG.sheetTitle }),
+      has(head.welcome) ? el("p", { class: "bk-welcome", text: head.welcome }) : null,
+      has(head.host) ? el("p", { class: "bk-host", text: head.host }) : null
+    ]);
+    cur.body.appendChild(cover);
+    var w = state[CFG.book.wifiKey] || {};
+    if (has(w.ssid)) {
+      var qr = qrSvg(wifiText(w));
+      var kv = el("div", { class: "kv" }, [el("div", {}, [el("b", { text: "Network" }), w.ssid]), has(w.pass) ? el("div", {}, [el("b", { text: "Password" }), w.pass]) : null]);
+      cur.body.appendChild(el("div", { class: "bk-wifi" }, [qr ? el("div", { class: "qr" }, [qr]) : null, el("div", {}, [el("h2", { text: "Wi-Fi" }), kv, el("p", { class: "scan", text: "Point your phone camera at the code to join." })])]));
+    }
+    // contents
+    var parts = [];
+    CFG.sections.forEach(function (sec) {
+      if (sec.inSheet === false || sec.key === CFG.headKey || sec.key === CFG.book.wifiKey) return;
+      var nodes = sectionNode(sec);
+      if (nodes) parts.push({ sec: sec, nodes: nodes });
+    });
+    if (parts.length) { n++; cur = newPage(n); sheet.appendChild(cur.page); }
+    var overflow = false;
+    parts.forEach(function (p) {
+      var title = el("h2", { class: "bk-h" + (p.sec.cls === "alert" ? " alert" : "") }, [el("span", { class: "dot" }), p.sec.sheetTitle || p.sec.title]);
+      // keep the title with the first piece; then add pieces one by one so long lists can continue on the next page
+      p.nodes.forEach(function (node, i) {
+        var chunk = i === 0 ? el("section", { class: "bk-sec" + (p.sec.cls === "alert" ? " alert" : "") }, [title, node]) : el("section", { class: "bk-sec cont" }, [node]);
+        cur.body.appendChild(chunk);
+        if (cur.body.scrollHeight > cur.body.clientHeight + 1) {
+          cur.body.removeChild(chunk);
+          n++; cur = newPage(n); sheet.appendChild(cur.page);
+          cur.body.appendChild(chunk);
+          if (cur.body.scrollHeight > cur.body.clientHeight + 1) overflow = true;
+        }
+      });
+    });
+    fitNote.textContent = overflow ? "One section is longer than a page. Shorten it so nothing gets cut off." : n + (n === 1 ? " page" : " pages") + ". Print double-sided to make a booklet.";
+    fitNote.style.color = overflow ? "#b42318" : "";
+    scale();
   }
 
   // shrink text until the sheet fits on one page

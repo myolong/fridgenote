@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vacation Rental Welcome Book Template (Free, Printable) | FridgeNote</title>
+<meta name="description" content="Make a printable welcome book for your vacation rental or guest room: check-in, Wi-Fi QR code, house guide, rules, local tips, and checkout steps. Free, no sign-up.">
+<link rel="canonical" href="https://myolong.github.io/fridgenote/vacation-rental-welcome-book/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FridgeNote">
+<meta property="og:title" content="Vacation Rental Welcome Book Template (Free, Printable) | FridgeNote">
+<meta property="og:description" content="Make a printable welcome book for your vacation rental or guest room: check-in, Wi-Fi QR code, house guide, rules, local tips, and checkout steps. Free, no sign-up.">
+<meta property="og:url" content="https://myolong.github.io/fridgenote/vacation-rental-welcome-book/">
+<meta name="theme-color" content="#fbf8f1">
+<link rel="icon" href="/fridgenote/assets/favicon.svg?v=f1297172" type="image/svg+xml">
+<link rel="stylesheet" href="/fridgenote/assets/style.css?v=1009230f">
+<style id="page-size">@page { size: letter; margin: 0; }</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Vacation rental welcome book", "url": "https://myolong.github.io/fridgenote/vacation-rental-welcome-book/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Make a printable welcome book for your vacation rental or guest room: check-in, Wi-Fi QR code, house guide, rules, local tips, and checkout steps. Free, no sign-up."}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What should a vacation rental welcome book include?", "acceptedAnswer": {"@type": "Answer", "text": "The basics guests ask about most: Wi-Fi, check-in and parking, how the heat and TV work, house rules, trash, checkout steps, and who to contact. A few local favorites make it feel personal."}}, {"@type": "Question", "name": "Should I put the door code in the welcome book?", "acceptedAnswer": {"@type": "Answer", "text": "We'd recommend against it. Codes often change between stays, and a printed book can be read by anyone in the house. Send codes privately before arrival."}}, {"@type": "Question", "name": "How long should it be?", "acceptedAnswer": {"@type": "Answer", "text": "Most guests skim. Two to four pages is plenty. The preview shows the page count as you type."}}, {"@type": "Question", "name": "Can I use this for a guest room or a house swap?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Change the title and skip anything that doesn't apply, like check-in times."}}, {"@type": "Question", "name": "Is this connected to any rental platform?", "acceptedAnswer": {"@type": "Answer", "text": "No. FridgeNote isn't affiliated with any booking site. It just makes a printable book from what you type, inside your browser."}}]}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+<a class="logo" href="/fridgenote/"><img class="logo-mark" src="/fridgenote/assets/logo.svg?v=f1297172" alt="" width="34" height="34">FridgeNote</a>
+<nav class="nav" aria-label="Main"><a href="/fridgenote/pet-sitter-instructions/">Pet sitter</a><a href="/fridgenote/babysitter-information-sheet/">Babysitter</a><a href="/fridgenote/vacation-rental-welcome-book/" aria-current="page">Welcome book</a><a href="/fridgenote/wifi-qr-code-card/">Wi-Fi card</a></nav>
+</div></header>
+<main><div class="wrap content">
+<h1>Vacation rental welcome book</h1>
+<p class="lead">Build a short, printable welcome book for your rental or guest room. It starts with a cover and a Wi-Fi QR code guests can scan.</p>
+</div>
+<div class="wrap"><div class="tool">
+<div class="panel no-print">
+<div class="bar no-print">
+<button type="button" class="btn primary" id="btn-print">Print or save PDF</button>
+<span class="seg" role="radiogroup" aria-label="Paper size"><label><input type="radio" name="paper" value="letter"><span>Letter</span></label><label><input type="radio" name="paper" value="a4"><span>A4</span></label></span>
+</div>
+<div class="bar"><button type="button" class="btn small" id="btn-example">Load example</button><button type="button" class="btn small" id="btn-clear">Clear all</button></div>
+<form id="sheet-form" onsubmit="return false"></form>
+<label class="check"><input type="checkbox" id="save-draft"> Save a draft on this device</label>
+<p class="privacy-note">What you type stays in this browser. Nothing is uploaded.</p>
+</div>
+<div class="stage"><div class="stage-inner"><div class="scaler" id="scaler"><div class="sheet letter" id="sheet"></div></div></div><p class="fit-note no-print" id="fit-note"></p></div>
+</div>
+<script type="application/json" id="sheet-config">{"id": "welcome-book", "sheetTitle": "Welcome", "headKey": "cover", "openSections": 2, "book": {"wifiKey": "wifi"}, "sections": [{"key": "cover", "type": "fields", "title": "Cover & welcome", "fields": [{"k": "title", "label": "Title", "ph": "Welcome to Maple Cottage"}, {"k": "place", "label": "Place name or address (small line on top)", "ph": "Maple Cottage · 24 Maple St"}, {"k": "welcome", "label": "Welcome message", "ph": "We're so glad you're here. Make yourself at home!", "long": true}, {"k": "host", "label": "Signed by", "ph": "Sam & Alex, your hosts"}]}, {"key": "wifi", "type": "fields", "title": "Wi-Fi (prints a QR code)", "hint": "The QR code is made in your browser. Guests scan it to join without typing.", "fields": [{"k": "ssid", "label": "Network name", "ph": "MapleCottage-Guest"}, {"k": "pass", "label": "Password (leave blank if none)", "ph": "sunny-garden-42"}]}, {"key": "arrival", "type": "fields", "title": "Arrival", "sheetTitle": "Getting settled", "hint": "Send door codes to guests privately before arrival. A printed book can be read by anyone in the house.", "fields": [{"k": "checkin", "label": "Check-in time", "short": "Check-in", "ph": "4 PM"}, {"k": "entry", "label": "Getting in", "short": "Getting in", "ph": "Code sent by message before arrival"}, {"k": "parking", "label": "Parking", "ph": "Driveway, one car. Street parking is free after 6 PM."}, {"k": "trash", "label": "Trash & recycling", "short": "Trash", "ph": "Bins by the garage. Pickup Tuesday morning."}]}, {"key": "guide", "type": "repeat", "title": "House guide", "sheetTitle": "How things work", "item": "Item", "max": 10, "nameKey": "name", "hint": "Add the things guests usually ask about: heat, TV, coffee maker, washer, hot tub.", "fields": [{"k": "name", "label": "What", "ph": "Thermostat"}, {"k": "how", "label": "How it works", "ph": "In the hallway. Keep it between 66 and 74°F.", "long": true}]}, {"key": "rules", "type": "rows", "title": "House rules", "sheetTitle": "House rules", "col0": "Rule", "col1": "Details", "ph0": "Quiet hours", "ph1": "10 PM to 8 AM", "start": [["Quiet hours", ""], ["Smoking", ""], ["Pets", ""], ["Guests", ""]]}, {"key": "local", "type": "repeat", "title": "Local favorites", "sheetTitle": "Our local favorites", "item": "Place", "max": 10, "nameKey": "name", "lineKeys": ["type"], "hint": "Your own picks. Short notes work best.", "fields": [{"k": "name", "label": "Name", "ph": "Harbor Bakery"}, {"k": "type", "label": "Type & distance", "ph": "Breakfast · 5 min walk"}, {"k": "note", "label": "Why you like it", "ph": "Get the cherry scone. Opens at 7."}]}, {"key": "checkout", "type": "checklist", "title": "Check-out", "sheetTitle": "Before you leave", "col0": "When", "col1": "What to do", "ph0": "By 10 AM", "ph1": "Start the dishwasher", "start": [["", ""], ["", ""], ["", ""], ["", ""]]}, {"key": "emergency", "type": "fields", "title": "Emergencies & contact", "sheetTitle": "If you need anything", "cls": "alert", "hint": "In the US and Canada, call 911 in an emergency. Writing the address here helps guests tell the dispatcher where to come.", "fields": [{"k": "address", "label": "This property's address", "short": "Address", "ph": "24 Maple St, Harbor Springs"}, {"k": "host", "label": "Host contact", "short": "Host", "ph": "Sam · (555) 123-4567 (text is best)"}, {"k": "backup", "label": "Local backup contact", "short": "Local contact", "ph": "Pat (property manager) · (555) 222-3333"}, {"k": "hospital", "label": "Nearest hospital / urgent care", "short": "Hospital", "ph": "Name, address"}, {"k": "where", "label": "First aid kit, fire extinguisher, water shutoff", "short": "Safety items", "ph": "Kit under kitchen sink, extinguisher by the back door", "long": true}]}], "example": {"cover": {"title": "Welcome to Maple Cottage", "place": "Maple Cottage · Harbor Springs", "welcome": "We're so glad you're here. This book has everything you need for your stay: how things work, our favorite spots in town, and who to call if anything comes up.\n\nMake yourself at home!", "host": "Sam & Alex, your hosts"}, "wifi": {"ssid": "MapleCottage-Guest", "pass": "sunny-garden-42"}, "arrival": {"checkin": "4 PM", "entry": "Door code sent by message the morning you arrive", "parking": "Driveway, one car. Street parking is free after 6 PM.", "trash": "Bins beside the garage. Recycling is the blue bin. Pickup is Tuesday morning."}, "guide": [{"name": "Heat & air", "how": "Thermostat is in the hallway. Please keep it between 66 and 76°F, and turn it down when you head out for the day."}, {"name": "TV", "how": "Use the black remote. Press Home to sign in to your own streaming accounts. Please sign out before you leave."}, {"name": "Coffee", "how": "Drip coffee maker on the counter. Filters and ground coffee are in the cabinet above it."}, {"name": "Washer & dryer", "how": "In the closet off the kitchen. Detergent is on the shelf. Clean the dryer lint screen after each load."}, {"name": "Fireplace", "how": "Gas fireplace. Flip the switch on the wall to the right. It turns off on its own after 2 hours."}], "rules": [["Quiet hours", "10 PM to 8 AM. Our neighbors are close."], ["Smoking", "Not allowed inside or on the porch."], ["Pets", "Sorry, no pets."], ["Guests", "Up to 4 overnight guests."], ["Shoes", "Please leave them by the door."]], "local": [{"name": "Harbor Bakery", "type": "Breakfast · 5 min walk", "note": "Get the cherry scone. Opens at 7."}, {"name": "Lakeside Grocery", "type": "Groceries · 3 min drive", "note": "Open until 10 PM."}, {"name": "Point Beach", "type": "Beach · 10 min walk", "note": "Best at sunset. Beach towels are in the hall closet."}, {"name": "The Net Shed", "type": "Dinner · 8 min drive", "note": "Fish tacos. Busy on weekends, so go early."}], "checkout": [["By 10 AM", "Check-out time"], ["", "Start the dishwasher"], ["", "Put used towels in the bathtub"], ["", "Take trash to the bins by the garage"], ["", "Lock the door. The code resets after you leave."]], "emergency": {"address": "24 Maple St, Harbor Springs", "host": "Sam · (555) 123-4567 (text is best)", "backup": "Pat (lives nearby) · (555) 222-3333", "hospital": "Harbor Community Hospital, 300 Bay Rd", "where": "First aid kit under the kitchen sink. Fire extinguisher by the back door. Water shutoff in the basement, left of the stairs."}}}</script></div>
+<div class="wrap narrow content"><h2>How to use it</h2>
+<ol>
+  <li><strong>Write a short welcome and add your Wi-Fi.</strong> The cover gets a QR code guests can scan to join.</li>
+  <li><strong>Fill in the questions guests ask most.</strong> Heat, TV, coffee, trash, and checkout. Skip anything you don't need.</li>
+  <li><strong>Print double-sided and put it somewhere obvious.</strong> A binder or a clear sleeve on the kitchen counter works well.</li>
+</ol>
+
+<h2>What guests look for first</h2>
+<table>
+  <thead><tr><th>Page</th><th>What to include</th></tr></thead>
+  <tbody>
+    <tr><td>Cover</td><td>A warm welcome, your name, and the Wi-Fi QR code</td></tr>
+    <tr><td>Getting settled</td><td>Check-in time, parking, trash and recycling</td></tr>
+    <tr><td>How things work</td><td>Thermostat, TV, coffee maker, washer, fireplace or hot tub</td></tr>
+    <tr><td>House rules</td><td>Quiet hours, smoking, pets, number of guests</td></tr>
+    <tr><td>Local favorites</td><td>Your own picks for breakfast, groceries, and a nice walk</td></tr>
+    <tr><td>Before you leave</td><td>Checkout time and a short checklist</td></tr>
+    <tr><td>If you need anything</td><td>Address, your contact, a local backup, nearest hospital, where the safety items are</td></tr>
+  </tbody>
+</table>
+
+<h2>Tips from hosts</h2>
+<ul>
+  <li><strong>Answer the questions you get by message.</strong> If three guests asked how the TV works, it belongs in the book.</li>
+  <li><strong>Keep checkout short.</strong> Four or five simple tasks feel fair. A long list can sour the end of a nice stay.</li>
+  <li><strong>Write local tips in your own words.</strong> "Get the cherry scone" is more useful than a list of restaurant names.</li>
+  <li><strong>Keep codes out of print.</strong> Send door and lockbox codes by message, and change them between stays.</li>
+  <li><strong>Check your local rules separately.</strong> Short-term rental rules, taxes, and safety requirements vary by city. This tool doesn't cover them.</li>
+</ul>
+<h2>Questions</h2><dl class="faq"><dt>What should a vacation rental welcome book include?</dt><dd>The basics guests ask about most: Wi-Fi, check-in and parking, how the heat and TV work, house rules, trash, checkout steps, and who to contact. A few local favorites make it feel personal.</dd><dt>Should I put the door code in the welcome book?</dt><dd>We&#x27;d recommend against it. Codes often change between stays, and a printed book can be read by anyone in the house. Send codes privately before arrival.</dd><dt>How long should it be?</dt><dd>Most guests skim. Two to four pages is plenty. The preview shows the page count as you type.</dd><dt>Can I use this for a guest room or a house swap?</dt><dd>Yes. Change the title and skip anything that doesn&#x27;t apply, like check-in times.</dd><dt>Is this connected to any rental platform?</dt><dd>No. FridgeNote isn&#x27;t affiliated with any booking site. It just makes a printable book from what you type, inside your browser.</dd></dl>
+<p class="meta">Updated 2026-11-20</p></div></main>
+<footer class="site-foot"><div class="wrap">
+<nav aria-label="Footer"><a href="/fridgenote/about/">About</a><a href="/fridgenote/privacy/">Privacy</a><a href="/fridgenote/terms/">Terms</a><a href="/fridgenote/contact/">Contact</a></nav>
+<p>© 2026 FridgeNote. Free printable sheets. Nothing you type leaves your browser.</p>
+</div></footer>
+<script src="/fridgenote/assets/qrcode.js?v=6e6189e2"></script><script src="/fridgenote/assets/sheet.js?v=3ec4a784"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Babysitter Information Sheet (Free, Printable) | FridgeNote</title>
+<meta name="description" content="Fill in your kids&#x27; allergies, bedtime routine, house rules, and emergency contacts, then print a one-page babysitter information sheet. Free, no sign-up.">
+<link rel="canonical" href="https://myolong.github.io/fridgenote/babysitter-information-sheet/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FridgeNote">
+<meta property="og:title" content="Babysitter Information Sheet (Free, Printable) | FridgeNote">
+<meta property="og:description" content="Fill in your kids&#x27; allergies, bedtime routine, house rules, and emergency contacts, then print a one-page babysitter information sheet. Free, no sign-up.">
+<meta property="og:url" content="https://myolong.github.io/fridgenote/babysitter-information-sheet/">
+<meta name="theme-color" content="#fbf8f1">
+<link rel="icon" href="/fridgenote/assets/favicon.svg?v=f1297172" type="image/svg+xml">
+<link rel="stylesheet" href="/fridgenote/assets/style.css?v=1009230f">
+<style id="page-size">@page { size: letter; margin: 0; }</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Babysitter information sheet", "url": "https://myolong.github.io/fridgenote/babysitter-information-sheet/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Fill in your kids' allergies, bedtime routine, house rules, and emergency contacts, then print a one-page babysitter information sheet. Free, no sign-up."}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What's the most important thing to put on a babysitter sheet?", "acceptedAnswer": {"@type": "Answer", "text": "Your phone numbers, your home address, allergies, and any medicine. Those are the things a sitter needs fastest if something goes wrong. Fill in the emergency box first."}}, {"@type": "Question", "name": "Why write my own address on it?", "acceptedAnswer": {"@type": "Answer", "text": "When people are stressed, they forget addresses, especially sitters who don't live nearby. A 911 dispatcher will ask for it first."}}, {"@type": "Question", "name": "Where does my information go?", "acceptedAnswer": {"@type": "Answer", "text": "Nowhere. The sheet is made in your browser and nothing you type is uploaded. If \"Save a draft on this device\" is on, your answers stay in this browser so you can reuse them."}}, {"@type": "Question", "name": "Can I use this for grandparents or a nanny?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Change the title to anything you like, such as \"Notes for Grandma,\" and fill in what applies."}}, {"@type": "Question", "name": "Does this give medical advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. The boxes are for your own instructions, written the way your child's doctor told you. In an emergency, the sitter should call 911."}}]}</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+<a class="logo" href="/fridgenote/"><img class="logo-mark" src="/fridgenote/assets/logo.svg?v=f1297172" alt="" width="34" height="34">FridgeNote</a>
+<nav class="nav" aria-label="Main"><a href="/fridgenote/pet-sitter-instructions/">Pet sitter</a><a href="/fridgenote/babysitter-information-sheet/" aria-current="page">Babysitter</a><a href="/fridgenote/vacation-rental-welcome-book/">Welcome book</a><a href="/fridgenote/wifi-qr-code-card/">Wi-Fi card</a></nav>
+</div></header>
+<main><div class="wrap content">
+<h1>Babysitter information sheet</h1>
+<p class="lead">Everything your sitter needs for the evening on one page: the kids, the plan, the rules, and who to call.</p>
+</div>
+<div class="wrap"><div class="tool">
+<div class="panel no-print">
+<div class="bar no-print">
+<button type="button" class="btn primary" id="btn-print">Print or save PDF</button>
+<span class="seg" role="radiogroup" aria-label="Paper size"><label><input type="radio" name="paper" value="letter"><span>Letter</span></label><label><input type="radio" name="paper" value="a4"><span>A4</span></label></span>
+</div>
+<div class="bar"><button type="button" class="btn small" id="btn-example">Load example</button><button type="button" class="btn small" id="btn-clear">Clear all</button></div>
+<form id="sheet-form" onsubmit="return false"></form>
+<label class="check"><input type="checkbox" id="save-draft"> Save a draft on this device</label>
+<p class="privacy-note">What you type stays in this browser. Nothing is uploaded.</p>
+</div>
+<div class="stage"><div class="stage-inner"><div class="scaler" id="scaler"><div class="sheet letter" id="sheet"></div></div></div><p class="fit-note no-print" id="fit-note"></p></div>
+</div>
+<script type="application/json" id="sheet-config">{"id": "babysitter", "sheetTitle": "Babysitter Information Sheet", "headKey": "parents", "subFrom": "subtitle", "openSections": 2, "footerNote": "Thank you for taking care of our kids!", "sections": [{"key": "parents", "type": "fields", "title": "Parents & tonight", "sheetTitle": "How to reach us", "skip": ["title", "subtitle", "dates"], "fields": [{"k": "title", "label": "Sheet title", "ph": "Babysitter Information Sheet"}, {"k": "subtitle", "label": "Line under the title", "ph": "For Emma & Leo"}, {"k": "dates", "label": "When you'll be away", "ph": "Sat 6 PM – 11 PM"}, {"k": "p1", "label": "Parent 1 name & phone", "short": "Parent", "ph": "Jamie · (555) 123-4567"}, {"k": "p2", "label": "Parent 2 name & phone", "short": "Parent", "ph": "Chris · (555) 765-4321"}, {"k": "where", "label": "Where you'll be", "short": "We'll be at", "ph": "Dinner at Rosa's, 12 Main St"}, {"k": "back", "label": "Expected home", "short": "Home by", "ph": "About 11 PM"}]}, {"key": "kids", "type": "repeat", "title": "The kids", "sheetTitle": "The kids", "item": "Child", "max": 4, "wide": true, "nameKey": "name", "lineKeys": ["age"], "hint": "One box per child. Blank boxes won't print.", "fields": [{"k": "name", "label": "Name", "ph": "Emma"}, {"k": "age", "label": "Age", "ph": "6 yrs"}, {"k": "allergy", "label": "Allergies", "short": "Allergies", "ph": "Peanuts (severe)"}, {"k": "meds", "label": "Medicine (exactly as your doctor told you)", "short": "Medicine", "ph": "None tonight", "long": true}, {"k": "food", "label": "Food & snacks", "short": "Food", "ph": "Pasta in the fridge. One snack after dinner."}, {"k": "bed", "label": "Bedtime routine", "short": "Bedtime", "ph": "Bath, 2 books, lights out 8 PM", "long": true}, {"k": "comfort", "label": "Comfort & calming", "short": "Comfort", "ph": "Bunny named Pip. Likes a nightlight."}, {"k": "notes", "label": "Good to know", "short": "Good to know", "ph": "May ask for a 3rd book. One is fine.", "long": true}]}, {"key": "schedule", "type": "checklist", "title": "Tonight's plan", "sheetTitle": "Tonight's plan", "col0": "Time", "col1": "What happens", "ph0": "6:30 PM", "ph1": "Dinner", "wide": true, "start": [["6:30 PM", ""], ["7:00 PM", ""], ["7:30 PM", ""], ["8:00 PM", ""]]}, {"key": "rules", "type": "fields", "title": "House rules", "sheetTitle": "House rules", "fields": [{"k": "screen", "label": "Screen time", "short": "Screens", "ph": "30 min of shows, no tablets after 7:30"}, {"k": "snacks", "label": "Snacks & sweets", "short": "Sweets", "ph": "Fruit is fine. No candy."}, {"k": "outside", "label": "Going outside", "short": "Outside", "ph": "Backyard only, with you"}, {"k": "visitors", "label": "Visitors & doors", "short": "Doors", "ph": "Don't open the door for anyone you don't know"}, {"k": "other", "label": "Anything else", "short": "Also", "ph": "Sitter can help herself to snacks"}]}, {"key": "emergency", "type": "fields", "title": "Emergencies", "sheetTitle": "In an emergency", "cls": "alert", "hint": "In the US and Canada, call 911 first in an emergency. Writing the home address here helps the sitter tell the dispatcher where to come.", "fields": [{"k": "first", "label": "First step", "short": "First", "ph": "Call 911, then call us"}, {"k": "address", "label": "This home's address (for 911)", "short": "Address", "ph": "24 Maple St, Springfield"}, {"k": "poison", "label": "Poison Control", "short": "Poison Control", "ph": "1-800-222-1222 (US)"}, {"k": "doctor", "label": "Pediatrician", "short": "Doctor", "ph": "Dr. Patel · (555) 888-1212"}, {"k": "backup", "label": "Backup adult nearby", "short": "Backup", "ph": "Grandma Ruth · (555) 333-2222"}, {"k": "firstaid", "label": "First aid kit location", "short": "First aid kit", "ph": "Under the bathroom sink"}]}, {"key": "home", "type": "fields", "title": "Around the house", "sheetTitle": "Around the house", "hint": "Don't write door or alarm codes on a sheet that can be seen from outside.", "fields": [{"k": "wifi", "label": "Wi-Fi", "ph": "Network & password"}, {"k": "tv", "label": "TV / streaming", "short": "TV", "ph": "Kids profile on the living room TV"}, {"k": "where", "label": "Where things are", "short": "Where", "ph": "Flashlight in the kitchen drawer, PJs in top drawer", "long": true}, {"k": "pets", "label": "Pets", "ph": "Cat may hide. Don't let her out."}]}, {"key": "notes", "type": "text", "title": "Anything else", "sheetTitle": "Notes", "wide": true, "ph": "Pizza money is on the counter."}], "example": {"parents": {"title": "Babysitter Information Sheet", "subtitle": "For Emma & Leo · Thanks for coming!", "dates": "Sat 6 PM – 11 PM", "p1": "Jamie · (555) 123-4567", "p2": "Chris · (555) 765-4321", "where": "Dinner at Rosa's, 12 Main St", "back": "About 11 PM"}, "kids": [{"name": "Emma", "age": "6 yrs", "allergy": "Peanuts (severe). EpiPen is in the kitchen drawer by the fridge.", "food": "Pasta in the fridge, 1 minute in the microwave.", "bed": "Bath, pajamas, 2 books. Lights out 8:00 PM.", "comfort": "Bunny named Pip. Leave the nightlight on.", "notes": "Will ask for a 3rd book. One more is fine."}, {"name": "Leo", "age": "3 yrs", "allergy": "None", "food": "Same pasta, cut small. Milk in a sippy cup.", "bed": "Diaper, 1 book, white noise on. Asleep by 7:30 PM.", "comfort": "Blue blanket. Rub his back if he cries.", "notes": "Gets cranky when tired. That's normal."}], "schedule": [["6:30 PM", "Dinner at the kitchen table"], ["7:00 PM", "Bath for both"], ["7:30 PM", "Leo to bed"], ["8:00 PM", "Emma to bed"]], "rules": {"screen": "30 min of shows after dinner. Kids profile only.", "snacks": "Fruit or yogurt. No candy tonight.", "outside": "Not after dark.", "visitors": "Don't open the door for anyone you don't know.", "other": "Help yourself to anything in the fridge."}, "emergency": {"first": "Call 911, then call us", "address": "24 Maple St, Springfield", "poison": "1-800-222-1222", "doctor": "Dr. Patel · (555) 888-1212", "backup": "Grandma Ruth (5 min away) · (555) 333-2222", "firstaid": "Under the bathroom sink"}, "home": {"wifi": "MapleHouse · see card on the fridge", "tv": "Kids profile on the living room TV", "where": "Flashlight in the kitchen drawer. Pajamas in the top dresser drawer.", "pets": "Our cat Luna may hide. Please don't let her out."}, "notes": "Pizza money is on the counter if you'd rather order in. Thank you!"}}</script></div>
+<div class="wrap narrow content"><h2>How to use it</h2>
+<ol>
+  <li><strong>Start with the emergency box.</strong> Your numbers, your address, and a backup adult nearby.</li>
+  <li><strong>Add a box for each child.</strong> Allergies and bedtime routine matter most. Skip anything that doesn't apply.</li>
+  <li><strong>Print it and walk through it with your sitter.</strong> Five minutes at the door clears up most questions.</li>
+</ol>
+
+<h2>What a good babysitter sheet covers</h2>
+<table>
+  <thead><tr><th>Section</th><th>What to write</th></tr></thead>
+  <tbody>
+    <tr><td>How to reach you</td><td>Both parents' phones, where you'll be, when you'll be home</td></tr>
+    <tr><td>The kids</td><td>Allergies, medicine, food, bedtime routine, what calms them down</td></tr>
+    <tr><td>Tonight's plan</td><td>Dinner, bath, and bedtime with times</td></tr>
+    <tr><td>House rules</td><td>Screens, sweets, going outside, opening the door</td></tr>
+    <tr><td>In an emergency</td><td>"Call 911 first," your home address, Poison Control, your pediatrician, a backup adult</td></tr>
+    <tr><td>Around the house</td><td>Wi-Fi, first aid kit, flashlight, pajamas</td></tr>
+  </tbody>
+</table>
+<p class="tip">US Poison Control is 1-800-222-1222. It's free and open 24 hours. Check the number for your country if you're outside the US.</p>
+
+<h2>Tips from parents</h2>
+<ul>
+  <li><strong>Be specific about allergies.</strong> "Peanuts, severe, EpiPen in the drawer by the fridge" is far more useful than "nut allergy."</li>
+  <li><strong>Write down the bedtime "script."</strong> Kids test new sitters at bedtime. If the sheet says two books, the sitter can point to it.</li>
+  <li><strong>Say what's normal.</strong> "Cries for 5 minutes after lights out, then sleeps" saves a nervous sitter from calling you mid-dinner.</li>
+  <li><strong>Name a backup adult who can get there fast.</strong> A neighbor or relative who lives close is better than one who answers fast but lives an hour away.</li>
+  <li><strong>Keep codes off the fridge.</strong> Give door and alarm codes in person or by text.</li>
+</ul>
+<h2>Questions</h2><dl class="faq"><dt>What&#x27;s the most important thing to put on a babysitter sheet?</dt><dd>Your phone numbers, your home address, allergies, and any medicine. Those are the things a sitter needs fastest if something goes wrong. Fill in the emergency box first.</dd><dt>Why write my own address on it?</dt><dd>When people are stressed, they forget addresses, especially sitters who don&#x27;t live nearby. A 911 dispatcher will ask for it first.</dd><dt>Where does my information go?</dt><dd>Nowhere. The sheet is made in your browser and nothing you type is uploaded. If &quot;Save a draft on this device&quot; is on, your answers stay in this browser so you can reuse them.</dd><dt>Can I use this for grandparents or a nanny?</dt><dd>Yes. Change the title to anything you like, such as &quot;Notes for Grandma,&quot; and fill in what applies.</dd><dt>Does this give medical advice?</dt><dd>No. The boxes are for your own instructions, written the way your child&#x27;s doctor told you. In an emergency, the sitter should call 911.</dd></dl>
+<p class="meta">Updated 2026-11-20</p></div></main>
+<footer class="site-foot"><div class="wrap">
+<nav aria-label="Footer"><a href="/fridgenote/about/">About</a><a href="/fridgenote/privacy/">Privacy</a><a href="/fridgenote/terms/">Terms</a><a href="/fridgenote/contact/">Contact</a></nav>
+<p>© 2026 FridgeNote. Free printable sheets. Nothing you type leaves your browser.</p>
+</div></footer>
+<script src="/fridgenote/assets/sheet.js?v=3ec4a784"></script>
+</body>
+</html>
